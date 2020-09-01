@@ -5,9 +5,10 @@
  */
 package com.mycompany.mercado.view;
 
+import com.mycompany.mercado.doumain.Cidade;
 import com.mycompany.mercado.doumain.Cliente;
 import com.mycompany.mercado.doumain.Endereco;
-import com.mycompany.mercado.doumain.Endereco_;
+import com.mycompany.mercado.doumain.Estado;
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
 
@@ -56,7 +57,7 @@ public class ViewCliente extends javax.swing.JFrame {
         cepC = new javax.swing.JTextField();
         bairroC = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        estadoC = new javax.swing.JComboBox<>();
         jLabel14 = new javax.swing.JLabel();
         cidadeC = new javax.swing.JTextField();
 
@@ -161,7 +162,7 @@ public class ViewCliente extends javax.swing.JFrame {
         jLabel13.setFont(new java.awt.Font("Wide Latin", 0, 13)); // NOI18N
         jLabel13.setText("Cidade:");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "mg", "am", "go", "ba", "sp" }));
+        estadoC.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "mg", "am", "go", "ba", "sp" }));
 
         jLabel14.setFont(new java.awt.Font("Wide Latin", 0, 13)); // NOI18N
         jLabel14.setText("Estado");
@@ -198,7 +199,7 @@ public class ViewCliente extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(estadoC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addComponent(bairroC))))
                 .addContainerGap())
@@ -221,7 +222,7 @@ public class ViewCliente extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(estadoC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel14)
                     .addComponent(cidadeC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(41, Short.MAX_VALUE))
@@ -278,6 +279,10 @@ public class ViewCliente extends javax.swing.JFrame {
             manager.persist(c);
             Endereco e = new Endereco(enderecoC.getText(), complementoC.getText(), bairroC.getText(), cepC.getText(), c);
             manager.persist(e);
+            Estado estado = new Estado(estadoC.getSelectedItem().toString());
+            manager.persist(estado);
+            Cidade cidade = new Cidade(cidadeC.getText(), estado);
+            manager.persist(cidade);
             manager.getTransaction().commit();
         } catch (Exception e) {
             System.out.println("Erro ao Salvar: " + e);
@@ -332,11 +337,11 @@ public class ViewCliente extends javax.swing.JFrame {
     private javax.swing.JFormattedTextField cpfC;
     private javax.swing.JTextField emailC;
     private javax.swing.JTextField enderecoC;
+    private javax.swing.JComboBox<String> estadoC;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
