@@ -5,7 +5,7 @@
  */
 package com.mycompany.mercado.dao;
 
-import com.mycompany.mercado.doumain.Cliente;
+import com.mycompany.mercado.doumain.Cidade;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -42,38 +42,38 @@ public class CidadeDAO {
     }
     
     
-    public Cliente getById(final Integer id){
-        return entityManager.find(Cliente.class, id);
+    public Cidade getById(final Integer id){
+        return entityManager.find(Cidade.class, id);
     }
-    public List<Cliente> findAll(){
-        return entityManager.createQuery("FROM"+ Cliente.class.getName())
+    public List<Cidade> findAll(){
+        return entityManager.createQuery("FROM"+ Cidade.class.getName())
                 .getResultList();
     }
-    public void persist(Cliente cliente){
+    public void persist(Cidade cidade){
         try {
             entityManager.getTransaction().begin();
-            entityManager.persist(cliente);
+            entityManager.persist(cidade);
             entityManager.getTransaction().commit();
         } catch (Exception e) {
             e.printStackTrace();
             entityManager.getTransaction().rollback();
         }
     }
-    public void merge(Cliente cliente){
+    public void merge(Cidade cidade){
         try {
             entityManager.getTransaction().begin();
-            entityManager.merge(cliente);
+            entityManager.merge(cidade);
             entityManager.getTransaction().commit();
         } catch (Exception e) {
             e.printStackTrace();
             entityManager.getTransaction().rollback();
         }
     }
-    public void remove(Cliente cliente){
+    public void remove(Cidade cidade){
         try {
             entityManager.getTransaction().begin();
-            cliente = entityManager.find(Cliente.class, cliente.getId());
-            entityManager.remove(cliente);
+            cidade = entityManager.find(Cidade.class, cidade.getId());
+            entityManager.remove(cidade);
             entityManager.getTransaction().commit();
         } catch (Exception e) {
             e.printStackTrace();
@@ -82,8 +82,8 @@ public class CidadeDAO {
     }
     public void removeById(final Integer id){
         try {
-            Cliente cliente = getById(id);
-            remove(cliente);
+            Cidade cidade = getById(id);
+            remove(cidade);
         } catch (Exception e) {
             e.printStackTrace();
         }
