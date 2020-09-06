@@ -57,6 +57,14 @@ public class Categoria implements Serializable{
         this.nome = nome;
     }
 
+    public List<Produto> getProdutos() {
+        return produtos;
+    }
+
+    public void setProdutos(List<Produto> produtos) {
+        this.produtos = produtos;
+    }
+
     @Override
     public int hashCode() {
         int hash = 5;
