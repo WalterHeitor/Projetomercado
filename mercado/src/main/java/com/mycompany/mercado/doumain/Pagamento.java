@@ -21,37 +21,35 @@ import javax.persistence.OneToOne;
  *
  * @author walter heitor
  */
-
 @Entity
+
 @Inheritance(strategy = InheritanceType.JOINED)
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, 
 	include = JsonTypeInfo.As.PROPERTY, property = "@type")
-
-public class Pagamento implements Serializable{
-
+public class Pagamento implements Serializable {
+    
     private static final long serialVersionUID = 1L;
-
-	@Id
-	private Integer id;
-	private Integer estado;
-	
-	//@JsonBackReference
-	@JsonIgnore
-	@OneToOne
-	@JoinColumn(name = "pedido_id")
-	@MapsId
-	private Pedido pedido;
-        
-        	public Pagamento() {
+    
+    @Id
+    private Integer id;
+    private Integer estado;
+    
+    @JsonIgnore
+    @OneToOne
+    @JoinColumn(name = "venda_id")
+    @MapsId
+    
+    private Venda venda;
+    
+    	public Pagamento() {
 		super();
 	}
 
-	public Pagamento(Integer id, EstadoPagamento estado, Pedido pedido) {
+	public Pagamento(Integer id, EstadoPagamento estado, Venda venda) {
 		super();
 		this.id = id;
 		this.estado = (estado==null) ? null : estado.getCodigo();
-		this.pedido = pedido;
+		this.venda = venda;
 	}
-
 
 }

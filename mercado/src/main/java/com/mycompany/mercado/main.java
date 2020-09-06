@@ -20,8 +20,8 @@ import javax.persistence.Persistence;
 public class main {
     public static void main(String[] args) {
 
-        //instaciar();
-        buscar();
+        instaciar();
+        //buscar();
         
         
     }
@@ -29,6 +29,7 @@ public class main {
         EntityManager manager = Persistence.createEntityManagerFactory("vendas")
                 .createEntityManager();
         manager.getTransaction().begin();
+        //##########            Cliente         ##########
         Cliente c = new Cliente("walter", "8475938574", "walter@heitor");
         System.out.println("Cliente ---- "+ c);
         manager.persist(c);
@@ -39,6 +40,8 @@ public class main {
         manager.persist(estado);
         Cidade cidade = new Cidade("itumbiara", estado);
         manager.persist(cidade);
+        //#########         Categoria           ##########
+        
         manager.getTransaction().commit();
         manager.close();
       
