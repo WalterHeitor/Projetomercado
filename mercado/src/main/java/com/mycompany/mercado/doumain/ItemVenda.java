@@ -32,7 +32,7 @@ public class ItemVenda implements Serializable{
 
     public ItemVenda(Venda venda, Produto produto, Double desconto, Integer quantidade, Double preco) {
         super();
-        id.setProdudo(produto);
+        id.setProduto(produto);
         id.setVenda(venda);
         this.desconto = desconto;
         this.quantidade = quantidade;
@@ -42,7 +42,7 @@ public class ItemVenda implements Serializable{
     public double getSubTotal(){
         return (preco - desconto) * quantidade;
     }
-    
+    @JsonIgnore
     public Venda getVenda(){
         return id.getVenda();
     }
@@ -50,10 +50,42 @@ public class ItemVenda implements Serializable{
         id.setVenda(venda);
     }
     public Produto getProduto(){
-        return id.getProdudo();
+        return id.getProduto();
     }
     public void setProduto(Produto produto){
-        id.setProdudo(produto);
+        id.setProduto(produto);
+    }
+
+    public ItemVendaPK getId() {
+        return id;
+    }
+
+    public void setId(ItemVendaPK id) {
+        this.id = id;
+    }
+
+    public Double getDesconto() {
+        return desconto;
+    }
+
+    public void setDesconto(Double desconto) {
+        this.desconto = desconto;
+    }
+
+    public Integer getQuantidade() {
+        return quantidade;
+    }
+
+    public void setQuantidade(Integer quantidade) {
+        this.quantidade = quantidade;
+    }
+
+    public Double getPreco() {
+        return preco;
+    }
+
+    public void setPreco(Double preco) {
+        this.preco = preco;
     }
     
     

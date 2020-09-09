@@ -25,7 +25,7 @@ class ItemVendaPK implements Serializable{
     private Venda venda;
     @ManyToOne
     @JoinColumn(name = "produto_id")
-    private Produto produdo;
+    private Produto produto;
 
     public Venda getVenda() {
         return venda;
@@ -35,19 +35,19 @@ class ItemVendaPK implements Serializable{
         this.venda = venda;
     }
 
-    public Produto getProdudo() {
-        return produdo;
+    public Produto getProduto() {
+        return produto;
     }
 
-    public void setProdudo(Produto produdo) {
-        this.produdo = produdo;
+    public void setProduto(Produto produdo) {
+        this.produto = produdo;
     }
 
     @Override
     public int hashCode() {
         int hash = 7;
         hash = 97 * hash + Objects.hashCode(this.venda);
-        hash = 97 * hash + Objects.hashCode(this.produdo);
+        hash = 97 * hash + Objects.hashCode(this.produto);
         return hash;
     }
 
@@ -66,7 +66,7 @@ class ItemVendaPK implements Serializable{
         if (!Objects.equals(this.venda, other.venda)) {
             return false;
         }
-        if (!Objects.equals(this.produdo, other.produdo)) {
+        if (!Objects.equals(this.produto, other.produto)) {
             return false;
         }
         return true;
