@@ -13,6 +13,7 @@ import com.mycompany.mercado.doumain.Endereco;
 import com.mycompany.mercado.doumain.Estado;
 import com.mycompany.mercado.doumain.Produto;
 import java.util.Arrays;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
 
@@ -23,8 +24,8 @@ import javax.persistence.Persistence;
 public class main {
     public static void main(String[] args) {
 
-        instaciar();
-        //buscar();
+        //instaciar();
+        buscar();
         
         
     }
@@ -98,7 +99,7 @@ public class main {
       
     }
     public static void buscar(){
-        Cliente c1 = ClienteDAO.getInstance().getById(1);
+        List<Cliente> c1 = ClienteDAO.getInstance().findAll();
         System.out.println("CLIENTE---------"+c1);
     }
 }

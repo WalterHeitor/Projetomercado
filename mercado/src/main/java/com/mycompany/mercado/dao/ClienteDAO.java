@@ -46,7 +46,7 @@ public class ClienteDAO {
         return entityManager.find(Cliente.class, id);
     }
     public List<Cliente> findAll(){
-        return entityManager.createQuery("FROM"+ Cliente.class.getName())
+        return entityManager.createQuery("FROM "+ Cliente.class.getName())
                 .getResultList();
     }
     public void persist(Cliente cliente){

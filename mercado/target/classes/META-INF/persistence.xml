@@ -15,7 +15,6 @@
       <!-- Show SQL in console -->
       <property name="hibernate.format_sql" value="true"/>
       <!-- Show SQL formatted -->
-      <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
     </properties>
   </persistence-unit>
 </persistence>
