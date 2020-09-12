@@ -10,10 +10,10 @@ import com.mycompany.mercado.doumain.Cidade;
 import com.mycompany.mercado.doumain.Cliente;
 import com.mycompany.mercado.doumain.Endereco;
 import com.mycompany.mercado.doumain.Estado;
-import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -43,6 +43,8 @@ public class ViewCliente extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jDateChooser9 = new com.toedter.calendar.JDateChooser();
+        jLabel1 = new javax.swing.JLabel();
         jPanelCliente = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -71,6 +73,8 @@ public class ViewCliente extends javax.swing.JFrame {
         cidadeC = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableClientes = new javax.swing.JTable();
+
+        jLabel1.setText("jLabel1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -176,6 +180,8 @@ public class ViewCliente extends javax.swing.JFrame {
         jLabel13.setFont(new java.awt.Font("Wide Latin", 0, 13)); // NOI18N
         jLabel13.setText("Cidade:");
 
+        estadoC.setBackground(new java.awt.Color(79, 87, 208));
+        estadoC.setFont(new java.awt.Font("Wide Latin", 0, 14)); // NOI18N
         estadoC.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "mg", "am", "go", "ba", "sp" }));
 
         jLabel14.setFont(new java.awt.Font("Wide Latin", 0, 13)); // NOI18N
@@ -195,7 +201,7 @@ public class ViewCliente extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel11)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cepC))
+                        .addComponent(cepC, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE))
                     .addGroup(jPanelEnderecoLayout.createSequentialGroup()
                         .addGroup(jPanelEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanelEnderecoLayout.createSequentialGroup()
@@ -212,10 +218,8 @@ public class ViewCliente extends javax.swing.JFrame {
                             .addComponent(jLabel14))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanelEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanelEnderecoLayout.createSequentialGroup()
-                                .addComponent(estadoC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(bairroC))))
+                            .addComponent(bairroC)
+                            .addComponent(estadoC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
         jPanelEnderecoLayout.setVerticalGroup(
@@ -233,20 +237,18 @@ public class ViewCliente extends javax.swing.JFrame {
                     .addComponent(complementoC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel12)
                     .addComponent(bairroC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addGroup(jPanelEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13)
                     .addComponent(estadoC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel14)
                     .addComponent(cidadeC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(41, Short.MAX_VALUE))
+                .addContainerGap(59, Short.MAX_VALUE))
         );
 
-        jTableClientes.setBackground(new java.awt.Color(204, 255, 255));
         jTableClientes.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jTableClientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
                 {null, null, null, null}
             },
             new String [] {
@@ -254,7 +256,7 @@ public class ViewCliente extends javax.swing.JFrame {
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, true, true
+                false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -262,8 +264,7 @@ public class ViewCliente extends javax.swing.JFrame {
             }
         });
         jTableClientes.setAutoscrolls(false);
-        jTableClientes.setGridColor(new java.awt.Color(204, 255, 204));
-        jTableClientes.setSelectionBackground(new java.awt.Color(0, 102, 102));
+        jTableClientes.setSelectionBackground(new java.awt.Color(51, 0, 204));
         jScrollPane1.setViewportView(jTableClientes);
         if (jTableClientes.getColumnModel().getColumnCount() > 0) {
             jTableClientes.getColumnModel().getColumn(0).setPreferredWidth(20);
@@ -284,7 +285,7 @@ public class ViewCliente extends javax.swing.JFrame {
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(172, 172, 172)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 210, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(184, 184, 184)
                         .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -337,25 +338,31 @@ public class ViewCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     public void salvar() {
-        EntityManager manager = Persistence.createEntityManagerFactory("vendas").createEntityManager();
+        EntityManager manager = Persistence.createEntityManagerFactory("vendas").
+                createEntityManager();
         try {
             manager.getTransaction().begin();
-            Cliente c = new Cliente(nomeC.getText(), cpfC.getText(), emailC.getText());
+            Cliente c = new Cliente(nomeC.getText().trim(), cpfC.getText().trim(), 
+                    emailC.getText().trim());
             manager.persist(c);
-            Endereco e = new Endereco(enderecoC.getText(), complementoC.getText(), bairroC.getText(), cepC.getText(), c);
+            Endereco e = new Endereco(enderecoC.getText().trim(), complementoC.getText().trim(),
+                    bairroC.getText().trim(), cepC.getText().trim(), c);
             manager.persist(e);
             Estado estado = new Estado(estadoC.getSelectedItem().toString());
             manager.persist(estado);
-            Cidade cidade = new Cidade(cidadeC.getText(), estado);
+            Cidade cidade = new Cidade(cidadeC.getText().trim(), estado);
             manager.persist(cidade);
             manager.getTransaction().commit();
         } catch (Exception e) {
             System.out.println("Erro ao Salvar: " + e);
+            JOptionPane.showMessageDialog(null, e.getMessage(),"Cadastro nao realizado",
+                    JOptionPane.ERROR_MESSAGE);
             manager.getTransaction().rollback();
         } finally {
             manager.close();
         }
         carregarClientes();
+        JOptionPane.showMessageDialog(null, "Cadastro do cliente realizado com sucesso");
 
     }
 
@@ -408,6 +415,8 @@ public class ViewCliente extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private com.toedter.calendar.JDateChooser jDateChooser9;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;

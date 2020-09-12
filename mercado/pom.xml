@@ -103,6 +103,13 @@
             <artifactId>jboss-transaction-api_1.2_spec</artifactId>
             <version>1.0.0.Final</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/com.toedter/jcalendar -->
+        <dependency>
+            <groupId>com.toedter</groupId>
+            <artifactId>jcalendar</artifactId>
+            <version>1.4</version>
+        </dependency>
+
         <dependency>
             <groupId>unknown.binary</groupId>
             <artifactId>hibernate-jpamodelgen-4.3.1.Final</artifactId>
