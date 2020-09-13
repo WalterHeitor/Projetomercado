@@ -20,7 +20,8 @@ import javax.persistence.ManyToOne;
  * @author walter heitor
  */
 @Entity
-public class Endereco implements Serializable{
+public class Endereco implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,10 +34,14 @@ public class Endereco implements Serializable{
     private String bairro;
     @Column
     private String cep;
-    
+
     @ManyToOne
     @JoinColumn(name = "cliente_id")
     private Cliente cliente;
+
+    @ManyToOne
+    @JoinColumn(name = "cidade_id")
+    private Cidade cidade;
 
     public Endereco() {
     }
@@ -63,6 +68,16 @@ public class Endereco implements Serializable{
         this.cep = cep;
         this.cliente = cliente;
     }
+
+    public Endereco(String logadouro, String complemeto, String bairro, String cep, Cliente cliente, Cidade cidade) {
+        this.logadouro = logadouro;
+        this.complemeto = complemeto;
+        this.bairro = bairro;
+        this.cep = cep;
+        this.cliente = cliente;
+        this.setCidade(cidade);
+    }
+    
     
 
     public Integer getId() {
@@ -113,6 +128,15 @@ public class Endereco implements Serializable{
         this.cliente = cliente;
     }
 
+    public Cidade getCidade() {
+        return cidade;
+    }
+
+    public void setCidade(Cidade cidade) {
+        this.cidade = cidade;
+    }
+    
+
     @Override
     public int hashCode() {
         int hash = 7;
@@ -142,7 +166,5 @@ public class Endereco implements Serializable{
     public String toString() {
         return "Endereco{" + "id=" + id + ", logadouro=" + logadouro + ", complemeto=" + complemeto + ", bairro=" + bairro + ", cep=" + cep + '}';
     }
-    
-    
-    
+
 }

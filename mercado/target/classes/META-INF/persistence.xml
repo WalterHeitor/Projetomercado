@@ -3,6 +3,15 @@
   <persistence-unit name="vendas" transaction-type="RESOURCE_LOCAL">
     <!--<provider>org.hibernate.ejb.HibernatePersistence</provider>-->
     <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+    <class>com.mycompany.mercado.doumain.Categoria</class>
+    <class>com.mycompany.mercado.doumain.Cidade</class>
+    <class>com.mycompany.mercado.doumain.Cliente</class>
+    <class>com.mycompany.mercado.doumain.Endereco</class>
+    <class>com.mycompany.mercado.doumain.Estado</class>
+    <class>com.mycompany.mercado.doumain.ItemVenda</class>
+    <class>com.mycompany.mercado.doumain.Pagamento</class>
+    <class>com.mycompany.mercado.doumain.Produto</class>
+    <class>com.mycompany.mercado.doumain.Venda</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/vendas"/>
       <property name="javax.persistence.jdbc.user" value="postgres"/>

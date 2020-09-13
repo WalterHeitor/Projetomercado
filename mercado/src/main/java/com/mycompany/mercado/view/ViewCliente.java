@@ -6,6 +6,7 @@
 package com.mycompany.mercado.view;
 
 import com.mycompany.mercado.dao.ClienteDAO;
+import com.mycompany.mercado.dao.EstadoDAO;
 import com.mycompany.mercado.doumain.Cidade;
 import com.mycompany.mercado.doumain.Cliente;
 import com.mycompany.mercado.doumain.Endereco;
@@ -31,6 +32,7 @@ public class ViewCliente extends javax.swing.JFrame {
      */
     public ViewCliente() {
         initComponents();
+        popularCaixaDECombinacao();
         carregarClientes();
     }
 
@@ -182,7 +184,7 @@ public class ViewCliente extends javax.swing.JFrame {
 
         estadoC.setBackground(new java.awt.Color(79, 87, 208));
         estadoC.setFont(new java.awt.Font("Wide Latin", 0, 14)); // NOI18N
-        estadoC.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "mg", "am", "go", "ba", "sp" }));
+        estadoC.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
 
         jLabel14.setFont(new java.awt.Font("Wide Latin", 0, 13)); // NOI18N
         jLabel14.setText("Estado");
@@ -265,6 +267,11 @@ public class ViewCliente extends javax.swing.JFrame {
         });
         jTableClientes.setAutoscrolls(false);
         jTableClientes.setSelectionBackground(new java.awt.Color(51, 0, 204));
+        jTableClientes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableClientesMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTableClientes);
         if (jTableClientes.getColumnModel().getColumnCount() > 0) {
             jTableClientes.getColumnModel().getColumn(0).setPreferredWidth(20);
@@ -314,7 +321,20 @@ public class ViewCliente extends javax.swing.JFrame {
         setSize(new java.awt.Dimension(1124, 888));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-/**
+
+    /**
+     * popular caixa de combianção
+     */
+    private void popularCaixaDECombinacao(){
+        List<Estado> estados = EstadoDAO.getInstance().findAll();
+        
+        for(Estado estado : estados){
+            estadoC.addItem(estado.getNome());
+        }
+    }
+    
+    
+    /**
  * carregar lista de clientes do banco de daods para tabela da 
  * viewClientes.
  */
@@ -365,6 +385,29 @@ public class ViewCliente extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null, "Cadastro do cliente realizado com sucesso");
 
     }
+    private void jTableClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableClientesMouseClicked
+        //Alterar tabela
+        alterarTable();
+    }//GEN-LAST:event_jTableClientesMouseClicked
+
+    public void alterarTable(){
+        
+        if(jTableClientes.getSelectedRow() != -1){
+            Integer codigo = (Integer) jTableClientes.getValueAt(jTableClientes.getSelectedRow(), 0);
+            Cliente cliente = ClienteDAO.getInstance().getById(codigo);
+            codigoC.setText(cliente.getId().toString());
+            nomeC.setText(cliente.getNome());
+            cpfC.setText(cliente.getCpf());
+            emailC.setText(cliente.getEmail());
+            enderecoC.setText(cliente.getEnderecos().get(cliente.getEnderecos().size() - 1).getLogadouro());
+            cepC.setText(cliente.getEnderecos().get(cliente.getEnderecos().size() - 1).getCep());
+            complementoC.setText(cliente.getEnderecos().get(cliente.getEnderecos().size() - 1).getComplemeto());
+            bairroC.setText(cliente.getEnderecos().get(cliente.getEnderecos().size() - 1).getBairro());
+            cidadeC.setText(cliente.getEnderecos().get(cliente.getEnderecos().size() - 1).getCidade().getNome());
+            estadoC.setSelectedItem(cliente.getEnderecos().get(cliente.getEnderecos().size() - 1).getCidade().getEstado().getNome());
+            System.out.println("------ "+jTableClientes.getSelectedRow());
+        }
+    }
 
     /**
      * @param args the command line arguments
@@ -410,7 +453,7 @@ public class ViewCliente extends javax.swing.JFrame {
     private javax.swing.JFormattedTextField cpfC;
     private javax.swing.JTextField emailC;
     private javax.swing.JTextField enderecoC;
-    private javax.swing.JComboBox<String> estadoC;
+    private javax.swing.JComboBox<Object> estadoC;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;

@@ -6,7 +6,10 @@
 package com.mycompany.mercado.doumain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,6 +19,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -31,6 +35,10 @@ public class Cidade implements Serializable {
     private Integer id;
     @Column
     private String nome;
+    
+   // @OneToMany(mappedBy = "cidade", cascade = CascadeType.ALL)
+   // private List<Endereco> enderecos = new ArrayList<>();
+    
     @ManyToOne
     @JoinColumn(name = "estado_id")
     private Estado estado;
@@ -70,6 +78,15 @@ public class Cidade implements Serializable {
     public void setNome(String nome) {
         this.nome = nome;
     }
+
+//    public List<Endereco> getEnderecos() {
+//        return enderecos;
+//    }
+//
+//    public void setEnderecos(List<Endereco> enderecos) {
+//        this.enderecos = enderecos;
+//    }
+    
 
     @Override
     public int hashCode() {

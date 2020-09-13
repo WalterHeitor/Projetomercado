@@ -46,7 +46,7 @@ public class EstadoDAO {
         return entityManager.find(Estado.class, id);
     }
     public List<Estado> findAll(){
-        return entityManager.createQuery("FROM"+ Estado.class.getName())
+        return entityManager.createQuery("FROM "+ Estado.class.getName())
                 .getResultList();
     }
     public void persist(Estado estado){
