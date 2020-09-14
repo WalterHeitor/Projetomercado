@@ -43,8 +43,8 @@
                       <EmptySpace min="-2" pref="172" max="-2" attributes="0"/>
                       <Component id="jButton1" min="-2" pref="125" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
-                      <Component id="jButton4" min="-2" pref="125" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="184" max="-2" attributes="0"/>
+                      <Component id="jButton4" min="-2" pref="235" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="74" max="-2" attributes="0"/>
                       <Component id="jButton3" min="-2" pref="125" max="-2" attributes="0"/>
                   </Group>
                   <Component id="jPanelEndereco" alignment="0" max="32767" attributes="0"/>
@@ -258,6 +258,8 @@
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/com/mycompany/mercado/imagens/BotaoEditar.png"/>
         </Property>
+        <Property name="mnemonic" type="int" value="99"/>
+        <Property name="text" type="java.lang.String" value="cancelar"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
             <TitledBorder title="Editar">
