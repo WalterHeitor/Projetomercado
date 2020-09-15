@@ -53,6 +53,11 @@ public class ViewMenu extends javax.swing.JFrame {
         jMenu4.setText("Cadastros");
 
         jMenuItem1.setText("Clientes");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
         jMenu4.add(jMenuItem1);
 
         jMenuItem2.setText("Produtos");
@@ -95,12 +100,28 @@ public class ViewMenu extends javax.swing.JFrame {
        telaProduto();
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
+    /**
+     * tela de cadastro de produto
+     */
     private void telaProduto(){
         ViewProduto telaProd = new ViewProduto();
         jDesktopPaneMenu.add(telaProd);
         telaProd.setVisible(true);
         
     }
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        telaCadCliente();
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    /**
+     * tela de cadastro de clientes
+     */
+    public void telaCadCliente(){
+        ViewCadCliente telaCadCliente = new ViewCadCliente();
+        jDesktopPaneMenu.add(telaCadCliente);
+        telaCadCliente.setVisible(true);
+    }
+    
     /**
      * @param args the command line arguments
      */
