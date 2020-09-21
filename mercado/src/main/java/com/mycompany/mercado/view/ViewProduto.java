@@ -5,6 +5,7 @@
  */
 package com.mycompany.mercado.view;
 
+import com.mycompany.mercado.dao.CategoriaDAO;
 import com.mycompany.mercado.dao.ProdutoDAO;
 import com.mycompany.mercado.doumain.Categoria;
 import com.mycompany.mercado.doumain.Produto;
@@ -26,6 +27,7 @@ public class ViewProduto extends javax.swing.JInternalFrame {
      */
     public ViewProduto() {
         initComponents();
+        popularCaixaDeCombinacao();
     }
     //DECLARAÇÂO DE VARIAVEIS
     Produto produto = new Produto();
@@ -47,9 +49,10 @@ public class ViewProduto extends javax.swing.JInternalFrame {
         jLabel3 = new javax.swing.JLabel();
         codigoP = new javax.swing.JTextField();
         descricaoP = new javax.swing.JTextField();
-        categoriaP = new javax.swing.JTextField();
         precoP = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
+        categoriaP = new javax.swing.JComboBox<>();
+        novoCategoria = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTableProduto = new javax.swing.JTable();
@@ -69,6 +72,11 @@ public class ViewProduto extends javax.swing.JInternalFrame {
         jLabel3.setText("Categoria:");
 
         jLabel4.setText("Preço:");
+
+        categoriaP.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        novoCategoria.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/mercado/imagens/add.png"))); // NOI18N
+        novoCategoria.setText("Categoria");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -91,8 +99,10 @@ public class ViewProduto extends javax.swing.JInternalFrame {
                         .addComponent(precoP, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(categoriaP, javax.swing.GroupLayout.DEFAULT_SIZE, 567, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(categoriaP, javax.swing.GroupLayout.PREFERRED_SIZE, 438, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(novoCategoria, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -107,9 +117,10 @@ public class ViewProduto extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(categoriaP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(precoP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
+                    .addComponent(jLabel4)
+                    .addComponent(categoriaP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(novoCategoria))
                 .addContainerGap(22, Short.MAX_VALUE))
         );
 
@@ -272,6 +283,12 @@ public class ViewProduto extends javax.swing.JInternalFrame {
         setBounds(0, 0, 1042, 613);
     }// </editor-fold>//GEN-END:initComponents
 
+    public void popularCaixaDeCombinacao(){
+        List<Categoria> categorias = CategoriaDAO.getInstance().findAll();
+        for(Categoria c: categorias){
+            categoriaP.addItem(c.getNome());
+        }
+    }
     /**
      * Carregar Produtos
      */
@@ -298,7 +315,6 @@ public class ViewProduto extends javax.swing.JInternalFrame {
         codigoP.setText("");
         descricaoP.setText("");
         precoP.setText("");
-        categoriaP.setText("");
     }
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
         salvar();
@@ -345,7 +361,7 @@ public class ViewProduto extends javax.swing.JInternalFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField categoriaP;
+    private javax.swing.JComboBox<String> categoriaP;
     private javax.swing.JTextField codigoP;
     private javax.swing.JTextField descricaoP;
     private javax.swing.JButton jButtonCancelar;
@@ -362,6 +378,7 @@ public class ViewProduto extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTableProduto;
+    private javax.swing.JButton novoCategoria;
     private javax.swing.JTextField precoP;
     // End of variables declaration//GEN-END:variables
 }

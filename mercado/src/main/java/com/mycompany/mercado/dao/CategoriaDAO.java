@@ -6,6 +6,7 @@
 package com.mycompany.mercado.dao;
 
 import com.mycompany.mercado.doumain.Categoria;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -44,6 +45,17 @@ public class CategoriaDAO {
     
     public Categoria getById(final Integer id){
         return entityManager.find(Categoria.class, id);
+    }
+    public Categoria getNome(String nome){
+        Categoria categoria = new Categoria();
+        List<Categoria> categorias = new ArrayList<>();
+        categorias = findAll();
+        for(Categoria c : categorias){
+            if(nome.equalsIgnoreCase(c.getNome())){
+                categoria = entityManager.find(Categoria.class, c.getId());
+            }
+        }
+        return categoria;
     }
     public List<Categoria> findAll(){
         return entityManager.createQuery("FROM "+ Categoria.class.getName())
