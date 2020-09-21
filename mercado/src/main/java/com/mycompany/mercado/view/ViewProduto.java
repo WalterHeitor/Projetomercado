@@ -284,7 +284,7 @@ public class ViewProduto extends javax.swing.JInternalFrame {
                 p.getId(),
                 p.getNome(),
                 p.getPreco(),
-                p.getCategorias().get(p.getCategorias().size() - 1)
+                p.getCategoria().getNome()
             });
         }
     }
@@ -314,10 +314,7 @@ public class ViewProduto extends javax.swing.JInternalFrame {
                 produto = new Produto(codigoP.getText().trim(), descricaoP.getText().trim(),
                         Double.parseDouble(precoP.getText().trim()));
                 
-                categoria.setNome(categoriaP.getText().trim());
-                List<Categoria> categorias = new ArrayList<>();
-                categorias.add(categoria);
-                produto.setCategorias(categorias);
+                
                 
                 manager.persist(produto);
                 manager.persist(categoria);

@@ -6,6 +6,7 @@
 package com.mycompany.mercado.dao;
 
 import com.mycompany.mercado.doumain.Estado;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -44,6 +45,17 @@ public class EstadoDAO {
     
     public Estado getById(final Integer id){
         return entityManager.find(Estado.class, id);
+    }
+    public Estado getNome(String nome){
+        List<Estado> estados = new ArrayList<>();
+        Estado e = new Estado();
+        estados = findAll();
+        for (Estado estado: estados){
+            if(nome.equalsIgnoreCase(estado.getNome())){
+                e = entityManager.find(Estado.class, estado.getId());
+            }
+        }
+        return e;
     }
     public List<Estado> findAll(){
         return entityManager.createQuery("FROM "+ Estado.class.getName())

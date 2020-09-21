@@ -31,6 +31,7 @@ public class ViewCadCliente extends javax.swing.JInternalFrame {
     public ViewCadCliente() {
         initComponents();
         carregarClientes();
+        popularCaixaDECombinacao();
     }
 
     //VARIAVEIS GLOBAIS
@@ -212,7 +213,11 @@ public class ViewCadCliente extends javax.swing.JInternalFrame {
 
         estadoC.setBackground(new java.awt.Color(79, 87, 208));
         estadoC.setFont(new java.awt.Font("Wide Latin", 0, 14)); // NOI18N
-        estadoC.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "AC", "AL", "AP", "AM", " BA", "CE", "DF", " ES", " GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO" }));
+        estadoC.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                estadoCMouseClicked(evt);
+            }
+        });
 
         jLabel14.setFont(new java.awt.Font("Wide Latin", 0, 13)); // NOI18N
         jLabel14.setText("Estado");
@@ -346,6 +351,16 @@ public class ViewCadCliente extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     /**
+     * popular caixa de combianção
+     */
+    private void popularCaixaDECombinacao(){
+        List<Estado> estados = EstadoDAO.getInstance().findAll();
+        
+        for(Estado estado : estados){
+            estadoC.addItem(estado.getNome());
+        }
+    }
+    /**
      * carregar lista de clientes do banco de daods para tabela da viewClientes.
      */
     private void carregarClientes() {
@@ -378,14 +393,16 @@ public class ViewCadCliente extends javax.swing.JInternalFrame {
                         emailC.getText().trim());
                 endereco = new Endereco(enderecoC.getText().trim(), complementoC.getText().trim(),
                         bairroC.getText().trim(), cepC.getText().trim(), cliente);
-                estado = new Estado(estadoC.getSelectedItem().toString());
+                estado = EstadoDAO.getInstance().getNome(estadoC.getSelectedItem().toString());
                 cidade = new Cidade(cidadeC.getText().trim(), estado);
                 endereco.setCidade(cidade);
                 manager.persist(cliente);
                 manager.persist(endereco);
-                manager.persist(estado);
+               // manager.merge(estado);
                 manager.persist(cidade);
                 manager.getTransaction().commit();
+                carregarClientes();
+            JOptionPane.showMessageDialog(null, "Cadastro do cliente realizado com sucesso");
             } catch (Exception e) {
                 System.out.println("Erro ao Salvar: " + e);
                 JOptionPane.showMessageDialog(null, e.getMessage(), "Cadastro nao realizado",
@@ -394,8 +411,7 @@ public class ViewCadCliente extends javax.swing.JInternalFrame {
             } finally {
                 manager.close();
             }
-            carregarClientes();
-            JOptionPane.showMessageDialog(null, "Cadastro do cliente realizado com sucesso");
+            
 
         }else{
             editar();
@@ -470,7 +486,7 @@ public class ViewCadCliente extends javax.swing.JInternalFrame {
 
             cidade = CidadeDAO.getInstance().getById(endereco.getCidade().getId());
             
-            estado = EstadoDAO.getInstance().getById(cidade.getEstado().getId());
+            estado = EstadoDAO.getInstance().getNome(estadoC.getSelectedItem().toString());
 
             estado.setNome(estadoC.getSelectedItem().toString());
 
@@ -480,9 +496,10 @@ public class ViewCadCliente extends javax.swing.JInternalFrame {
 
             manager.merge(cliente);
             manager.merge(endereco);
-            manager.merge(estado);
+           // manager.merge(estado);
             manager.merge(cidade);
             manager.getTransaction().commit();
+            JOptionPane.showMessageDialog(null, "Cadastro do cliente editado com sucesso");
         } catch (Exception e) {
             System.out.println("Erro ao Editar: " + e);
             JOptionPane.showMessageDialog(null, e.getMessage(), "Cadastro nao editado",
@@ -492,13 +509,19 @@ public class ViewCadCliente extends javax.swing.JInternalFrame {
             manager.close();
         }
         carregarClientes();
-        JOptionPane.showMessageDialog(null, "Cadastro do cliente editado com sucesso");
+        
 
     }
 
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
         cancelar();
     }//GEN-LAST:event_jButtonCancelarActionPerformed
+
+    private void estadoCMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_estadoCMouseClicked
+        
+        popularCaixaDECombinacao();
+        
+    }//GEN-LAST:event_estadoCMouseClicked
 
     public void cancelar(){
         ViewCadCliente.this.dispose();
