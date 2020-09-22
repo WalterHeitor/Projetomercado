@@ -12,6 +12,7 @@ import com.mycompany.mercado.doumain.Cidade;
 import com.mycompany.mercado.doumain.Cliente;
 import com.mycompany.mercado.doumain.Endereco;
 import com.mycompany.mercado.doumain.Estado;
+import com.mycompany.mercado.doumain.Pessoa;
 import com.mycompany.mercado.doumain.Produto;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -25,18 +26,27 @@ public class main {
 
     public static void main(String[] args) {
 
-        //instaciar();
+        instaciar();
         //buscar();
-        buscarEst();
-        
+        //buscarEst();
+        //teste();
     }
 
+    public static void teste(){
+        try {
+            EntityManager manager = Persistence.createEntityManagerFactory("vendas")
+                .createEntityManager();
+        } catch (RuntimeException e) {
+            System.out.println("ERRO ------"+e);
+        }
+    }
     public static void instaciar() {
-        EntityManager manager = Persistence.createEntityManagerFactory("vendas")
+        try {
+             EntityManager manager = Persistence.createEntityManagerFactory("vendas")
                 .createEntityManager();
         manager.getTransaction().begin();
 
-        //INSTACIAÇÃO DE SIGLAS DOS ESTADOS
+//        //INSTACIAÇÃO DE SIGLAS DOS ESTADOS
         Estado est1 = new Estado("AC");
         Estado est2 = new Estado("AL");
         Estado est3 = new Estado("AP");
@@ -94,20 +104,20 @@ public class main {
         manager.persist(est27);
 
         //##########            Cliente         ##########
-        Cliente c = new Cliente("walter", "8475938574", "walter@heitor");
-        System.out.println("Cliente ---- " + c);
-        manager.persist(c);
-        Endereco e = new Endereco("logadouro", "complemeto", "bairro",
-                "79809499191", c);
+        
+        Cliente pesCli = new Cliente("79809499999", "Walter Heitor", "walter@heitor");
+        System.out.println("Cliente ---- " + pesCli);
+        manager.persist(pesCli);
+        Endereco e = new Endereco("logadouro", "complemeto", "bairro", "79809499191", pesCli);
         Cidade cidade = new Cidade("itumbiara", est9);
         e.setCidade(cidade);
         manager.persist(e);
         manager.persist(cidade);
         //##########            Cliente 1        ##########
-        Cliente c1 = new Cliente("maria clara", "12345678911", "maria@clara");
-        Cliente c2 = new Cliente("roberta miranda", "12345678911", "robert@miranda");
-        Cliente c3 = new Cliente("mario quintana", "12311178911", "mario@quintana");
-        Cliente c4 = new Cliente("martagonzales", "11111118911", "marta@gozales");
+        Cliente c1 = new Cliente( "12345678911", "maria clara", "maria@clara");
+        Cliente c2 = new Cliente( "12345678911", "roberta miranda", "robert@miranda");
+        Cliente c3 = new Cliente( "12311178911", "mario quintana", "mario@quintana");
+        Cliente c4 = new Cliente( "11111118911", "martagonzales", "marta@gozales");
         Endereco e1 = new Endereco("rua antonio domingos borges", "N° 129", "marolina", "123456-000", c1);
         Endereco e2 = new Endereco("rua olegario aquino ramos", "N° 13", "multirao", "122226-000", c2);
         Endereco e3 = new Endereco("rua mariana tomas borges", "N° 29", "morada dos sonhos", "222256-000", c2);
@@ -160,6 +170,16 @@ public class main {
         Produto p8 = new Produto("87654", "Roçadeira", 780.00);
         Produto p9 = new Produto("98765", "Abajur", 70.00);
 
+//        Produto p1 = new Produto("Computador", 2000.00);
+//        Produto p2 = new Produto("Impressora", 800.00);
+//        Produto p3 = new Produto("Mouse", 80.00);
+//        Produto p4 = new Produto("Mesa de escritorio", 300.00);
+//        Produto p5 = new Produto("Toalha", 50.00);
+//        Produto p6 = new Produto("Colcha", 200.00);
+//        Produto p7 = new Produto("TV 50 pol sansung", 2680.00);
+//        Produto p8 = new Produto("Roçadeira", 780.00);
+//        Produto p9 = new Produto("Abajur", 70.00);
+
         p1.setCategoria(cat1);
         p2.setCategoria(cat1);
         p3.setCategoria(cat1);
@@ -169,7 +189,7 @@ public class main {
         p7.setCategoria(cat3);
         p8.setCategoria(cat5);
         p9.setCategoria(cat3);
-
+        
         manager.persist(p1);
         manager.persist(p2);
         manager.persist(p3);
@@ -179,15 +199,22 @@ public class main {
         manager.persist(p7);
         manager.persist(p8);
         manager.persist(p9);
+        
         manager.persist(cat1);
         manager.persist(cat2);
         manager.persist(cat3);
         manager.persist(cat4);
         manager.persist(cat5);
         manager.persist(cat6);
+        
+        
 
         manager.getTransaction().commit();
         manager.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("ERRO AO INSTANCIAR -> "+e);
+        }
 
     }
 

@@ -36,8 +36,8 @@ public class Endereco implements Serializable {
     private String cep;
 
     @ManyToOne
-    @JoinColumn(name = "cliente_id")
-    private Cliente cliente;
+    @JoinColumn(name = "pessoa_id")
+    private Pessoa pessoa;
 
     @ManyToOne
     @JoinColumn(name = "cidade_id")
@@ -61,24 +61,42 @@ public class Endereco implements Serializable {
         this.cep = cep;
     }
 
-    public Endereco(String logadouro, String complemeto, String bairro, String cep, Cliente cliente) {
+    public Endereco(String logadouro, String complemeto, String bairro, String cep, Pessoa pessoa) {
         this.logadouro = logadouro;
         this.complemeto = complemeto;
         this.bairro = bairro;
         this.cep = cep;
-        this.cliente = cliente;
+        this.pessoa = pessoa;
+    }
+    
+    public Endereco(Integer id, String logadouro, String complemeto, String bairro, String cep, Pessoa pessoa) {
+        this.id = id;
+        this.logadouro = logadouro;
+        this.complemeto = complemeto;
+        this.bairro = bairro;
+        this.cep = cep;
+        this.pessoa = pessoa;
     }
 
-    public Endereco(String logadouro, String complemeto, String bairro, String cep, Cliente cliente, Cidade cidade) {
+    
+    public Endereco(Integer id, String logadouro, String complemeto, String bairro, String cep, Pessoa pessoa, Cidade cidade) {
+        this.id = id;
         this.logadouro = logadouro;
         this.complemeto = complemeto;
         this.bairro = bairro;
         this.cep = cep;
-        this.cliente = cliente;
-        this.setCidade(cidade);
+        this.pessoa = pessoa;
+        this.cidade = cidade;
     }
     
-    
+
+    public Pessoa getPessoa() {
+        return pessoa;
+    }
+
+    public void setPessoa(Pessoa pessoa) {
+        this.pessoa = pessoa;
+    }
 
     public Integer getId() {
         return id;
@@ -120,14 +138,6 @@ public class Endereco implements Serializable {
         this.cep = cep;
     }
 
-    public Cliente getCliente() {
-        return cliente;
-    }
-
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
-    }
-
     public Cidade getCidade() {
         return cidade;
     }
@@ -164,7 +174,10 @@ public class Endereco implements Serializable {
 
     @Override
     public String toString() {
-        return "Endereco{" + "id=" + id + ", logadouro=" + logadouro + ", complemeto=" + complemeto + ", bairro=" + bairro + ", cep=" + cep + '}';
+        return "Endereco{" + "id=" + id + ", logadouro=" + logadouro + ", complemeto=" + complemeto + ", bairro=" + bairro + ", cep=" + cep + ", pessoa=" + pessoa + ", cidade=" + cidade + '}';
     }
+
+  
+    
 
 }

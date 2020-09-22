@@ -14,6 +14,8 @@ import java.util.Objects;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -29,6 +31,12 @@ public class Produto implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     private String id;
+    
+
+    public Produto(String nome, Double preco) {
+        this.nome = nome;
+        this.preco = preco;
+    }
     @Column
     private String nome;
     @Column
@@ -52,15 +60,7 @@ public class Produto implements Serializable {
         this.nome = nome;
         this.preco = preco;
     }
-
-    @JsonIgnore
-    public List<Venda> getVendas() {
-        List<Venda> lista = new ArrayList<>();
-        for (ItemVenda x : itens) {
-            lista.add(x.getVenda());
-        }
-        return lista;
-    }
+    //Gets Sets
 
     public String getId() {
         return id;
@@ -85,6 +85,17 @@ public class Produto implements Serializable {
     public void setPreco(Double preco) {
         this.preco = preco;
     }
+    
+
+    @JsonIgnore
+    public List<Venda> getVendas() {
+        List<Venda> lista = new ArrayList<>();
+        for (ItemVenda x : itens) {
+            lista.add(x.getVenda());
+        }
+        return lista;
+    }
+
 
     public Categoria getCategoria() {
         return categoria;

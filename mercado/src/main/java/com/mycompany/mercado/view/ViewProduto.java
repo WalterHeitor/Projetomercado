@@ -298,9 +298,7 @@ public class ViewProduto extends javax.swing.JInternalFrame {
         model.setNumRows(0);
         for(Produto p: listProdutos){
             model.addRow(new Object[]{
-                p.getId(),
-                p.getNome(),
-                p.getPreco(),
+                
                 p.getCategoria().getNome()
             });
         }

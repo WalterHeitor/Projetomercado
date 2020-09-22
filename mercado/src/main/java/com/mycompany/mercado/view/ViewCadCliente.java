@@ -13,6 +13,7 @@ import com.mycompany.mercado.doumain.Cidade;
 import com.mycompany.mercado.doumain.Cliente;
 import com.mycompany.mercado.doumain.Endereco;
 import com.mycompany.mercado.doumain.Estado;
+import com.mycompany.mercado.doumain.Pessoa;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
@@ -370,7 +371,7 @@ public class ViewCadCliente extends javax.swing.JInternalFrame {
         //inserir Clientes
         for (Cliente c : listClientes) {
             model.addRow(new Object[]{
-                c.getId(),
+                c.getId_pessoa(),
                 c.getNome(),
                 c.getCpf(),
                 c.getEmail()
@@ -389,8 +390,8 @@ public class ViewCadCliente extends javax.swing.JInternalFrame {
         if (codigo.equalsIgnoreCase("")) {
             try {
                 manager.getTransaction().begin();
-                cliente = new Cliente(nomeC.getText().trim(), cpfC.getText().trim(),
-                        emailC.getText().trim());
+                cliente = new Cliente(cpfC.getText().trim(),
+                        nomeC.getText().trim(), emailC.getText().trim());
                 endereco = new Endereco(enderecoC.getText().trim(), complementoC.getText().trim(),
                         bairroC.getText().trim(), cepC.getText().trim(), cliente);
                 estado = EstadoDAO.getInstance().getNome(estadoC.getSelectedItem().toString());
@@ -429,7 +430,7 @@ public class ViewCadCliente extends javax.swing.JInternalFrame {
         if (jTableClientes.getSelectedRow() != -1) {
             Integer codigo = (Integer) jTableClientes.getValueAt(jTableClientes.getSelectedRow(), 0);
             cliente = ClienteDAO.getInstance().getById(codigo);
-            codigoC.setText(cliente.getId().toString());
+            codigoC.setText(cliente.getId_pessoa().toString());
             nomeC.setText(cliente.getNome());
             cpfC.setText(cliente.getCpf());
             emailC.setText(cliente.getEmail());
@@ -482,7 +483,7 @@ public class ViewCadCliente extends javax.swing.JInternalFrame {
             endereco.setComplemeto(complementoC.getText().trim());
             endereco.setBairro(bairroC.getText().trim());
             endereco.setCep(cepC.getText().trim());
-            endereco.setCliente(cliente);
+            endereco.setPessoa(cliente);
 
             cidade = CidadeDAO.getInstance().getById(endereco.getCidade().getId());
             

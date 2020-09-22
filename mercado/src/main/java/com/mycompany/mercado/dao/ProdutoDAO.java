@@ -42,7 +42,7 @@ public class ProdutoDAO {
     }
     
     
-    public Produto getById(final Integer id){
+    public Produto getById(final String id){
         return entityManager.find(Produto.class, id);
     }
     public List<Produto> findAll(){
@@ -80,7 +80,7 @@ public class ProdutoDAO {
             entityManager.getTransaction().rollback();
         }
     }
-    public void removeById(final Integer id){
+    public void removeById(final String id){
         try {
             Produto produto = getById(id);
             remove(produto);

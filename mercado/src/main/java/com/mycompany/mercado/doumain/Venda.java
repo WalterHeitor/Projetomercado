@@ -42,9 +42,10 @@ public class Venda implements Serializable {
 
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "venda")
     private Pagamento pagamento;
+    
     @ManyToOne
-    @JoinColumn(name = "cliente_id")
-    private Cliente cliente;
+    @JoinColumn(name = "pessoa_id")
+    private Pessoa pessoa;
     
     @OneToMany(mappedBy = "id.venda")
     private Set<ItemVenda> itens = new HashSet<>();
@@ -52,9 +53,9 @@ public class Venda implements Serializable {
     public Venda() {
     }
 
-    public Venda(Date instante, Cliente cliente) {
+    public Venda(Date instante, Pessoa pessoa) {
         this.instante = instante;
-        this.cliente = cliente;
+        this.pessoa = pessoa;
     }
     
     public double getValorTotal(){
@@ -89,13 +90,16 @@ public class Venda implements Serializable {
         this.pagamento = pagamento;
     }
 
-    public Cliente getCliente() {
-        return cliente;
+    public Pessoa getPessoa() {
+        return pessoa;
     }
 
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
+    public void setPessoa(Pessoa pessoa) {
+        this.pessoa = pessoa;
     }
+
+    
+    
 
     public Set<ItemVenda> getItens() {
         return itens;

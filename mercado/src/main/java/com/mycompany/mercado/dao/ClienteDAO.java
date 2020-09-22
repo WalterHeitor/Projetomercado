@@ -72,7 +72,7 @@ public class ClienteDAO {
     public void remove(Cliente cliente){
         try {
             entityManager.getTransaction().begin();
-            cliente = entityManager.find(Cliente.class, cliente.getId());
+            cliente = entityManager.find(Cliente.class, cliente.getCpf());
             entityManager.remove(cliente);
             entityManager.getTransaction().commit();
         } catch (Exception e) {
