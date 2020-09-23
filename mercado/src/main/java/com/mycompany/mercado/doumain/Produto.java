@@ -31,22 +31,26 @@ public class Produto implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     private String id;
-    
-
-    public Produto(String nome, Double preco) {
-        this.nome = nome;
-        this.preco = preco;
-    }
     @Column
-    private String nome;
+    private String descricao;
     @Column
-    private Double preco;
+    private String marca;
+    @Column
+    private Double precoDeCusto;
+    @Column
+    private Double precoDeVenda;
+    @Column
+    private Integer qtd;
 
     //@JsonBackReference
     //@JsonIgnore
     @ManyToOne
     @JoinColumn(name = "categoria_id")
     private Categoria categoria;
+    
+    @ManyToOne
+    @JoinColumn(name = "pessoa_id")
+    private Pessoa pessoa;
 
     @JsonIgnore
     @OneToMany(mappedBy = "id.produto")
@@ -55,12 +59,8 @@ public class Produto implements Serializable {
     public Produto() {
     }
 
-    public Produto(String id, String nome, Double preco) {
-        this.id = id;
-        this.nome = nome;
-        this.preco = preco;
-    }
-    //Gets Sets
+    
+    //GETTERS SETTERS
 
     public String getId() {
         return id;
@@ -70,32 +70,53 @@ public class Produto implements Serializable {
         this.id = id;
     }
 
-    public String getNome() {
-        return nome;
+    public String getDescricao() {
+        return descricao;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
     }
 
-    public Double getPreco() {
-        return preco;
+    public String getMarca() {
+        return marca;
     }
 
-    public void setPreco(Double preco) {
-        this.preco = preco;
-    }
-    
-
-    @JsonIgnore
-    public List<Venda> getVendas() {
-        List<Venda> lista = new ArrayList<>();
-        for (ItemVenda x : itens) {
-            lista.add(x.getVenda());
-        }
-        return lista;
+    public void setMarca(String marca) {
+        this.marca = marca;
     }
 
+    public Double getPrecoDeCusto() {
+        return precoDeCusto;
+    }
+
+    public void setPrecoDeCusto(Double precoDeCusto) {
+        this.precoDeCusto = precoDeCusto;
+    }
+
+    public Double getPrecoDeVenda() {
+        return precoDeVenda;
+    }
+
+    public void setPrecoDeVenda(Double precoDeVenda) {
+        this.precoDeVenda = precoDeVenda;
+    }
+
+    public Integer getQtd() {
+        return qtd;
+    }
+
+    public void setQtd(Integer qtd) {
+        this.qtd = qtd;
+    }
+
+    public Pessoa getPessoa() {
+        return pessoa;
+    }
+
+    public void setPessoa(Pessoa pessoa) {
+        this.pessoa = pessoa;
+    }
 
     public Categoria getCategoria() {
         return categoria;
@@ -111,6 +132,15 @@ public class Produto implements Serializable {
 
     public void setItens(Set<ItemVenda> itens) {
         this.itens = itens;
+    }
+    
+    @JsonIgnore
+    public List<Venda> getVendas() {
+        List<Venda> lista = new ArrayList<>();
+        for (ItemVenda x : itens) {
+            lista.add(x.getVenda());
+        }
+        return lista;
     }
 
     @Override

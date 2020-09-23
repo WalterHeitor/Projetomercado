@@ -76,6 +76,8 @@ public class ViewCadCliente extends javax.swing.JInternalFrame {
         estadoC = new javax.swing.JComboBox<>();
         jLabel14 = new javax.swing.JLabel();
         cidadeC = new javax.swing.JTextField();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        jLabel15 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableClientes = new javax.swing.JTable();
 
@@ -223,6 +225,9 @@ public class ViewCadCliente extends javax.swing.JInternalFrame {
         jLabel14.setFont(new java.awt.Font("Wide Latin", 0, 13)); // NOI18N
         jLabel14.setText("Estado");
 
+        jLabel15.setFont(new java.awt.Font("Wide Latin", 0, 13)); // NOI18N
+        jLabel15.setText("Data do cadastro:");
+
         javax.swing.GroupLayout jPanelEnderecoLayout = new javax.swing.GroupLayout(jPanelEndereco);
         jPanelEndereco.setLayout(jPanelEnderecoLayout);
         jPanelEnderecoLayout.setHorizontalGroup(
@@ -257,7 +262,10 @@ public class ViewCadCliente extends javax.swing.JInternalFrame {
                             .addComponent(bairroC)
                             .addGroup(jPanelEnderecoLayout.createSequentialGroup()
                                 .addComponent(estadoC, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE)))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel15)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
         jPanelEnderecoLayout.setVerticalGroup(
@@ -276,12 +284,15 @@ public class ViewCadCliente extends javax.swing.JInternalFrame {
                     .addComponent(jLabel12)
                     .addComponent(bairroC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanelEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel13)
-                    .addComponent(estadoC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel14)
-                    .addComponent(cidadeC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(59, Short.MAX_VALUE))
+                .addGroup(jPanelEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel13)
+                        .addComponent(estadoC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel14)
+                        .addComponent(cidadeC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel15))
+                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(80, Short.MAX_VALUE))
         );
 
         jTableClientes.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -543,11 +554,13 @@ public class ViewCadCliente extends javax.swing.JInternalFrame {
     private javax.swing.JButton jButtonEditar;
     private javax.swing.JButton jButtonNovo;
     private javax.swing.JButton jButtonSalvar;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;

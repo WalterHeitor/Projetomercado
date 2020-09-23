@@ -326,7 +326,10 @@
                               <Component id="bairroC" max="32767" attributes="0"/>
                               <Group type="102" attributes="0">
                                   <Component id="estadoC" min="-2" pref="129" max="-2" attributes="0"/>
-                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jLabel15" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="jDateChooser1" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -353,13 +356,17 @@
                       <Component id="bairroC" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jLabel13" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="estadoC" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabel14" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="cidadeC" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jLabel13" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="estadoC" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel14" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="cidadeC" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel15" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Component id="jDateChooser1" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="59" max="32767" attributes="0"/>
+                  <EmptySpace pref="80" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -441,6 +448,16 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="cidadeC">
+        </Component>
+        <Component class="com.toedter.calendar.JDateChooser" name="jDateChooser1">
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel15">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Wide Latin" size="13" style="0"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Data do cadastro:"/>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>

@@ -5,8 +5,10 @@
  */
 package com.mycompany.mercado.doumain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 import javax.persistence.CascadeType;
@@ -20,6 +22,8 @@ import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
@@ -38,6 +42,9 @@ public class Pessoa implements Serializable {
     private String nome;
     @Column
     private String email;
+    @Temporal(TemporalType.TIMESTAMP)
+    @JsonFormat(pattern = "dd/MM/yyyy HH:mm")
+    private Date dataCadastro;
 
     @OneToOne
     @JoinColumn(name = "telefone_id")
@@ -48,26 +55,24 @@ public class Pessoa implements Serializable {
 
     @OneToMany(mappedBy = "pessoa")
     private List<Venda> vendas = new ArrayList<>();
+    
+    @OneToMany(mappedBy = "pessoa")
+    private List<Produto> produtos = new ArrayList<>();
 
     public Pessoa() {
     }
 
-    public Pessoa(String nome, String email) {
+    public Pessoa(String nome, String email, Date dataCadastro) {
         this.nome = nome;
         this.email = email;
+        this.dataCadastro = dataCadastro;
     }
 
-    public Pessoa(Integer id_pessoa, String nome, String email) {
+    public Pessoa(Integer id_pessoa, String nome, String email, Date dataCadastro) {
         this.id_pessoa = id_pessoa;
         this.nome = nome;
         this.email = email;
-    }
-
-    public Pessoa(Integer id_pessoa, String nome, String email, Telefone telefone) {
-        this.id_pessoa = id_pessoa;
-        this.nome = nome;
-        this.email = email;
-        this.telefone = telefone;
+        this.dataCadastro = dataCadastro;
     }
 
     public Integer getId_pessoa() {
