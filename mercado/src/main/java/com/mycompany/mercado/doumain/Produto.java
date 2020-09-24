@@ -41,6 +41,8 @@ public class Produto implements Serializable {
     private Double precoDeVenda;
     @Column
     private Integer qtd;
+    @Column
+    private String unidade;
 
     //@JsonBackReference
     //@JsonIgnore
@@ -57,6 +59,57 @@ public class Produto implements Serializable {
     private Set<ItemVenda> itens = new HashSet<>();
 
     public Produto() {
+    }
+
+    public Produto(String id, String descricao, String marca, Double precoDeCusto, Double precoDeVenda, Integer qtd, String unidade) {
+        this.id = id;
+        this.descricao = descricao;
+        this.marca = marca;
+        this.precoDeCusto = precoDeCusto;
+        this.precoDeVenda = precoDeVenda;
+        this.qtd = qtd;
+        this.unidade = unidade;
+    }
+
+    public Produto(String descricao, String marca, Double precoDeCusto, Double precoDeVenda, Integer qtd, String unidade) {
+        this.descricao = descricao;
+        this.marca = marca;
+        this.precoDeCusto = precoDeCusto;
+        this.precoDeVenda = precoDeVenda;
+        this.qtd = qtd;
+        this.unidade = unidade;
+    }
+
+    public Produto(String descricao, String marca, Double precoDeCusto, Double precoDeVenda, Integer qtd, String unidade, Categoria categoria) {
+        this.descricao = descricao;
+        this.marca = marca;
+        this.precoDeCusto = precoDeCusto;
+        this.precoDeVenda = precoDeVenda;
+        this.qtd = qtd;
+        this.unidade = unidade;
+        this.categoria = categoria;
+    }
+
+    public Produto(String id, String descricao, String marca, Double precoDeCusto, Double precoDeVenda, Integer qtd, String unidade, Pessoa pessoa) {
+        this.id = id;
+        this.descricao = descricao;
+        this.marca = marca;
+        this.precoDeCusto = precoDeCusto;
+        this.precoDeVenda = precoDeVenda;
+        this.qtd = qtd;
+        this.unidade = unidade;
+        this.pessoa = pessoa;
+    }
+
+    public Produto(String descricao, String marca, Double precoDeCusto, Double precoDeVenda, Integer qtd, String unidade, Categoria categoria, Pessoa pessoa) {
+        this.descricao = descricao;
+        this.marca = marca;
+        this.precoDeCusto = precoDeCusto;
+        this.precoDeVenda = precoDeVenda;
+        this.qtd = qtd;
+        this.unidade = unidade;
+        this.categoria = categoria;
+        this.pessoa = pessoa;
     }
 
     

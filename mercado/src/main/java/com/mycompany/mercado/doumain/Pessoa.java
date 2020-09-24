@@ -5,12 +5,10 @@
  */
 package com.mycompany.mercado.doumain;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.Calendar;
 import java.util.List;
-import java.util.Objects;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -43,8 +41,8 @@ public class Pessoa implements Serializable {
     @Column
     private String email;
     @Temporal(TemporalType.TIMESTAMP)
-    @JsonFormat(pattern = "dd/MM/yyyy HH:mm")
-    private Date dataCadastro;
+   //@JsonFormat(pattern = "dd/MM/yyyy HH:mm")
+    private Calendar dataCadastro;
 
     @OneToOne
     @JoinColumn(name = "telefone_id")
@@ -62,13 +60,13 @@ public class Pessoa implements Serializable {
     public Pessoa() {
     }
 
-    public Pessoa(String nome, String email, Date dataCadastro) {
+    public Pessoa(String nome, String email, Calendar dataCadastro) {
         this.nome = nome;
         this.email = email;
         this.dataCadastro = dataCadastro;
     }
 
-    public Pessoa(Integer id_pessoa, String nome, String email, Date dataCadastro) {
+    public Pessoa(Integer id_pessoa, String nome, String email, Calendar dataCadastro) {
         this.id_pessoa = id_pessoa;
         this.nome = nome;
         this.email = email;
@@ -105,6 +103,22 @@ public class Pessoa implements Serializable {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Calendar getDataCadastro() {
+        return dataCadastro;
+    }
+
+    public void setDataCadastro(Calendar dataCadastro) {
+        this.dataCadastro = dataCadastro;
+    }
+
+    public List<Produto> getProdutos() {
+        return produtos;
+    }
+
+    public void setProdutos(List<Produto> produtos) {
+        this.produtos = produtos;
     }
 
     public List<Endereco> getEnderecos() {

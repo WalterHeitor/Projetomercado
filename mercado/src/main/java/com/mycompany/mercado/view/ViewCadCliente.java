@@ -14,6 +14,8 @@ import com.mycompany.mercado.doumain.Cliente;
 import com.mycompany.mercado.doumain.Endereco;
 import com.mycompany.mercado.doumain.Estado;
 import com.mycompany.mercado.doumain.Pessoa;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
@@ -76,7 +78,7 @@ public class ViewCadCliente extends javax.swing.JInternalFrame {
         estadoC = new javax.swing.JComboBox<>();
         jLabel14 = new javax.swing.JLabel();
         cidadeC = new javax.swing.JTextField();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        dateCadCliente = new com.toedter.calendar.JDateChooser();
         jLabel15 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableClientes = new javax.swing.JTable();
@@ -265,7 +267,7 @@ public class ViewCadCliente extends javax.swing.JInternalFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel15)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                                .addComponent(dateCadCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
         jPanelEnderecoLayout.setVerticalGroup(
@@ -291,7 +293,7 @@ public class ViewCadCliente extends javax.swing.JInternalFrame {
                         .addComponent(jLabel14)
                         .addComponent(cidadeC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel15))
-                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(dateCadCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(80, Short.MAX_VALUE))
         );
 
@@ -326,12 +328,12 @@ public class ViewCadCliente extends javax.swing.JInternalFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanelCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButtonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(107, 107, 107)
+                        .addGap(119, 119, 119)
                         .addComponent(jButtonNovo, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButtonEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -339,22 +341,23 @@ public class ViewCadCliente extends javax.swing.JInternalFrame {
                         .addComponent(jButtonSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jPanelEndereco, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jScrollPane1))
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(156, 156, 156)
+                .addContainerGap(156, Short.MAX_VALUE)
                 .addComponent(jPanelCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanelEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(18, 18, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jButtonEditar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 93, Short.MAX_VALUE)
-                    .addComponent(jButtonNovo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButtonCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonNovo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(jButtonSalvar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(94, 94, 94))
         );
@@ -401,8 +404,9 @@ public class ViewCadCliente extends javax.swing.JInternalFrame {
         if (codigo.equalsIgnoreCase("")) {
             try {
                 manager.getTransaction().begin();
+                
                 cliente = new Cliente(cpfC.getText().trim(),
-                        nomeC.getText().trim(), emailC.getText().trim());
+                        nomeC.getText().trim(), emailC.getText().trim(), (GregorianCalendar) dateCadCliente.getCalendar());
                 endereco = new Endereco(enderecoC.getText().trim(), complementoC.getText().trim(),
                         bairroC.getText().trim(), cepC.getText().trim(), cliente);
                 estado = EstadoDAO.getInstance().getNome(estadoC.getSelectedItem().toString());
@@ -445,6 +449,7 @@ public class ViewCadCliente extends javax.swing.JInternalFrame {
             nomeC.setText(cliente.getNome());
             cpfC.setText(cliente.getCpf());
             emailC.setText(cliente.getEmail());
+            dateCadCliente.setCalendar(cliente.getDataCadastro());
             Integer codEnd = (cliente.getEnderecos().get(cliente.getEnderecos().size() - 1).getId());
             endereco = EnderecoDAO.getInstance().getById(codEnd);
             enderecoC.setText(endereco.getLogadouro());
@@ -488,6 +493,7 @@ public class ViewCadCliente extends javax.swing.JInternalFrame {
             cliente.setNome(nomeC.getText().trim());
             cliente.setCpf(cpfC.getText().trim());
             cliente.setEmail(emailC.getText().trim());
+            cliente.setDataCadastro((GregorianCalendar) dateCadCliente.getCalendar());
 
             endereco = EnderecoDAO.getInstance().getById(cliente.getEnderecos().get(cliente.getEnderecos().size() - 1).getId());
             endereco.setLogadouro(enderecoC.getText().trim());
@@ -547,6 +553,7 @@ public class ViewCadCliente extends javax.swing.JInternalFrame {
     private javax.swing.JTextField codigoC;
     private javax.swing.JTextField complementoC;
     private javax.swing.JFormattedTextField cpfC;
+    private com.toedter.calendar.JDateChooser dateCadCliente;
     private javax.swing.JTextField emailC;
     private javax.swing.JTextField enderecoC;
     private javax.swing.JComboBox<Object> estadoC;
@@ -554,7 +561,6 @@ public class ViewCadCliente extends javax.swing.JInternalFrame {
     private javax.swing.JButton jButtonEditar;
     private javax.swing.JButton jButtonNovo;
     private javax.swing.JButton jButtonSalvar;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;

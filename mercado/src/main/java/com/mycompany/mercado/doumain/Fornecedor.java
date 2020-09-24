@@ -6,6 +6,7 @@
 package com.mycompany.mercado.doumain;
 
 import java.io.Serializable;
+import java.util.Calendar;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.PrimaryKeyJoinColumn;
@@ -17,28 +18,40 @@ import javax.persistence.PrimaryKeyJoinColumn;
 @PrimaryKeyJoinColumn(name="id_pessoa")
 @Entity
 
-public class Fornecedor extends Pessoa implements Serializable{
+public class Fornecedor extends Pessoa {
     
     private static final long serialVersionUID = 1L;
 
     @Column
     private String fantasia;
     @Column
+    private String razaoSociao;
+    @Column
     private String cnpj;
 
     public Fornecedor() {
     }
 
-    public Fornecedor(String fantasia) {
+    public Fornecedor(String fantasia, String razaoSociao, String cnpj) {
         this.fantasia = fantasia;
-    }
-
-    public Fornecedor(String fantasia, String cnpj) {
-
-        this.fantasia = fantasia;
+        this.razaoSociao = razaoSociao;
         this.cnpj = cnpj;
-
     }
+
+    public Fornecedor(String fantasia, String razaoSociao, String cnpj, String nome, String email, Calendar dataCadastro) {
+        super(nome, email, dataCadastro);
+        this.fantasia = fantasia;
+        this.razaoSociao = razaoSociao;
+        this.cnpj = cnpj;
+    }
+
+    public Fornecedor(String fantasia, String razaoSociao, String cnpj, Integer id_pessoa, String nome, String email, Calendar dataCadastro) {
+        super(id_pessoa, nome, email, dataCadastro);
+        this.fantasia = fantasia;
+        this.razaoSociao = razaoSociao;
+        this.cnpj = cnpj;
+    }
+
 
     public String getFantasia() {
         return fantasia;
@@ -46,6 +59,14 @@ public class Fornecedor extends Pessoa implements Serializable{
 
     public void setFantasia(String fantasia) {
         this.fantasia = fantasia;
+    }
+
+    public String getRazaoSociao() {
+        return razaoSociao;
+    }
+
+    public void setRazaoSociao(String razaoSociao) {
+        this.razaoSociao = razaoSociao;
     }
 
     public String getCnpj() {

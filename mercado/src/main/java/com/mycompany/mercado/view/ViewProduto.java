@@ -325,8 +325,8 @@ public class ViewProduto extends javax.swing.JInternalFrame {
         
             try {
                 manager.getTransaction().begin();
-                produto = new Produto(codigoP.getText().trim(), descricaoP.getText().trim(),
-                        Double.parseDouble(precoP.getText().trim()));
+               // produto = new Produto(codigoP.getText().trim(), descricaoP.getText().trim(),
+                 //       Double.parseDouble(precoP.getText().trim()));
                 
                 
                 

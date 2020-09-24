@@ -5,7 +5,9 @@
  */
 package com.mycompany.mercado.doumain;
 
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.PrimaryKeyJoinColumn;
@@ -32,12 +34,12 @@ public class Cliente extends Pessoa{
         this.cpf = cpf;
     }
 
-    public Cliente(String cpf, String nome, String email, Date dataCadastro) {
+    public Cliente(String cpf, String nome, String email, Calendar dataCadastro) {
         super(nome, email, dataCadastro);
         this.cpf = cpf;
     }
 
-    public Cliente(String cpf, Integer id_pessoa, String nome, String email, Date dataCadastro) {
+    public Cliente(String cpf, Integer id_pessoa, String nome, String email, Calendar dataCadastro) {
         super(id_pessoa, nome, email, dataCadastro);
         this.cpf = cpf;
     }

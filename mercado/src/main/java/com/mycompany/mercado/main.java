@@ -12,8 +12,12 @@ import com.mycompany.mercado.doumain.Cidade;
 import com.mycompany.mercado.doumain.Cliente;
 import com.mycompany.mercado.doumain.Endereco;
 import com.mycompany.mercado.doumain.Estado;
+import com.mycompany.mercado.doumain.Fornecedor;
 import com.mycompany.mercado.doumain.Pessoa;
 import com.mycompany.mercado.doumain.Produto;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
@@ -105,7 +109,7 @@ public class main {
 
         //##########            Cliente         ##########
         
-        Cliente pesCli = new Cliente("79809499999", "Walter Heitor", "walter@heitor");
+        Cliente pesCli = new Cliente("79809499999", "Walter Heitor", "walter@heitor",new GregorianCalendar(2020, 2, 28) );
         System.out.println("Cliente ---- " + pesCli);
         manager.persist(pesCli);
         Endereco e = new Endereco("logadouro", "complemeto", "bairro", "79809499191", pesCli);
@@ -114,10 +118,10 @@ public class main {
         manager.persist(e);
         manager.persist(cidade);
         //##########            Cliente 1        ##########
-        Cliente c1 = new Cliente( "12345678911", "maria clara", "maria@clara");
-        Cliente c2 = new Cliente( "12345678911", "roberta miranda", "robert@miranda");
-        Cliente c3 = new Cliente( "12311178911", "mario quintana", "mario@quintana");
-        Cliente c4 = new Cliente( "11111118911", "martagonzales", "marta@gozales");
+        Cliente c1 = new Cliente( "12345678911", "maria clara", "maria@clara", new GregorianCalendar(2020, 2, 22));
+        Cliente c2 = new Cliente( "12345678911", "roberta miranda", "robert@miranda",new GregorianCalendar(2020, 3, 20));
+        Cliente c3 = new Cliente( "12311178911", "mario quintana", "mario@quintana", new GregorianCalendar(2020, 4, 22));
+        Cliente c4 = new Cliente( "11111118911", "martagonzales", "marta@gozales", new GregorianCalendar(2020, 5, 18));
         Endereco e1 = new Endereco("rua antonio domingos borges", "N° 129", "marolina", "123456-000", c1);
         Endereco e2 = new Endereco("rua olegario aquino ramos", "N° 13", "multirao", "122226-000", c2);
         Endereco e3 = new Endereco("rua mariana tomas borges", "N° 29", "morada dos sonhos", "222256-000", c2);
@@ -159,26 +163,23 @@ public class main {
         Categoria cat4 = new Categoria("Cama mesa e banho");
         Categoria cat5 = new Categoria("Mecanica");
         Categoria cat6 = new Categoria("Solda");
-        //#########         Produtos            ##########
-        Produto p1 = new Produto("12345", "Computador", 2000.00);
-        Produto p2 = new Produto("23456", "Impressora", 800.00);
-        Produto p3 = new Produto("34567", "Mouse", 80.00);
-        Produto p4 = new Produto("45678", "Mesa de escritorio", 300.00);
-        Produto p5 = new Produto("54321", "Toalha", 50.00);
-        Produto p6 = new Produto("65432", "Colcha", 200.00);
-        Produto p7 = new Produto("76543", "TV 50 pol sansung", 2680.00);
-        Produto p8 = new Produto("87654", "Roçadeira", 780.00);
-        Produto p9 = new Produto("98765", "Abajur", 70.00);
-
-//        Produto p1 = new Produto("Computador", 2000.00);
-//        Produto p2 = new Produto("Impressora", 800.00);
-//        Produto p3 = new Produto("Mouse", 80.00);
-//        Produto p4 = new Produto("Mesa de escritorio", 300.00);
-//        Produto p5 = new Produto("Toalha", 50.00);
-//        Produto p6 = new Produto("Colcha", 200.00);
-//        Produto p7 = new Produto("TV 50 pol sansung", 2680.00);
-//        Produto p8 = new Produto("Roçadeira", 780.00);
-//        Produto p9 = new Produto("Abajur", 70.00);
+        //#########         Fornecedores            ##########
+           // Fornecedor f = new Fornecedor(fantasia, razaoSociao, cnpj, nome, email, dataCadastro);
+            Fornecedor f = new Fornecedor("Sangung", "Sangung.LTDA", "11111111111111", "juia junqueira", "julia@sansung", new GregorianCalendar(2020, 1,1));
+            Fornecedor f2 = new Fornecedor("Dell", "Dell.LTDA", "11111111111111", "beth ferreira", "beth@Dell", new GregorianCalendar(2020, 2,1));
+            Fornecedor f3 = new Fornecedor("Informatia", "Informatia.LTDA", "11111111111111", "raquel miranda", "raquel@Informatia", new GregorianCalendar(2020, 3,1));
+            Fornecedor f4 = new Fornecedor("CasaBem", "CasaBem.LTDA", "11111111111111", "macia arantes", "macia@CasaBem", new GregorianCalendar(2020, 4,1));
+        //#########         Produtos            ########## 
+      //Produto p  = new Produto(descricao, marca, Double.MAX_VALUE, Double.NaN, Integer.SIZE, unidade, cat6, pesCli)
+        Produto p1 = new Produto("12345", "Computador", "Dell", 1300.00, 2000.00, 1,"PEÇA", f2);
+        Produto p2 = new Produto("23456", "Impressora", "HP",458.00, 800.00, 1, "PEÇA", f3);
+        Produto p3 = new Produto("34567", "Mouse", "MAX", 20.00, 80.00, 5, "UNIDADE", f3);
+        Produto p4 = new Produto("45678", "Mesa de escritorio", "Moveis Planejados", 150.00, 300.00,4,"UNIDADE",f4);
+        Produto p5 = new Produto("54321", "Toalha", "CasaBem", 18.60, 50.00, 30, "UNIDADE", f4);
+        Produto p6 = new Produto("65432", "Colcha", "CasaBem", 140.00, 200.00, 27, "UNIDADE");
+        Produto p7 = new Produto("76543", "TV 50 pol sansung", "SANSUNG", 1300.00, 2680.00, 16, "UNIDADE");
+        Produto p8 = new Produto("87654", "Roçadeira", "Balmer", 298.90, 780.00, 4, "pEÇA");
+        Produto p9 = new Produto("98765", "Abajur", "CasaBem",33.90, 70.00, 13, "PEÇA");
 
         p1.setCategoria(cat1);
         p2.setCategoria(cat1);
@@ -189,6 +190,16 @@ public class main {
         p7.setCategoria(cat3);
         p8.setCategoria(cat5);
         p9.setCategoria(cat3);
+        
+        p6.setPessoa(f4);
+        p7.setPessoa(f);
+        p8.setPessoa(f4);
+        p9.setPessoa(f4);
+        
+        manager.persist(f);
+        manager.persist(f2);
+        manager.persist(f3);
+        manager.persist(f4);
         
         manager.persist(p1);
         manager.persist(p2);
