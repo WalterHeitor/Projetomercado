@@ -5,12 +5,28 @@
  */
 package com.mycompany.mercado.view;
 
+import javax.swing.JDesktopPane;
+
 /**
  *
  * @author walter heitor
  */
 public class ViewMenu extends javax.swing.JFrame {
 
+    
+    private static final long serialVersionUID = 1L;
+    
+    private static ViewMenu viewMenu;
+    public static ViewMenu getInstance(){
+        if(viewMenu == null){
+            viewMenu = new ViewMenu();
+        }
+        return viewMenu;
+    }
+    
+    public static JDesktopPane getJDesktopPane(){
+        return getInstance().jDesktopPaneMenu;
+    }
     /**
      * Creates new form ViewMenu
      */
@@ -33,6 +49,8 @@ public class ViewMenu extends javax.swing.JFrame {
         jMenu4 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem4 = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -67,6 +85,17 @@ public class ViewMenu extends javax.swing.JFrame {
             }
         });
         jMenu4.add(jMenuItem2);
+
+        jMenuItem3.setText("Categoria");
+        jMenu4.add(jMenuItem3);
+
+        jMenuItem4.setText("Fornecedores");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jMenuItem4);
 
         jMenuBar1.add(jMenu4);
 
@@ -122,6 +151,17 @@ public class ViewMenu extends javax.swing.JFrame {
         telaCadCliente.setVisible(true);
     }
     
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        telaFornecedor();
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    public void telaFornecedor(){
+        ViewCadFornecedor telaCadFornecedor = new ViewCadFornecedor();
+        jDesktopPaneMenu.add(telaCadFornecedor);
+        telaCadFornecedor.setVisible(true);
+    }
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -152,7 +192,7 @@ public class ViewMenu extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ViewMenu().setVisible(true);
+                getInstance().setVisible(true);
             }
         });
     }
@@ -164,5 +204,7 @@ public class ViewMenu extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
     // End of variables declaration//GEN-END:variables
 }
