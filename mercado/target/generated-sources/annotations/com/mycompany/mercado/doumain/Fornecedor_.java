@@ -9,6 +9,7 @@ import javax.persistence.metamodel.StaticMetamodel;
 public abstract class Fornecedor_ extends com.mycompany.mercado.doumain.Pessoa_ {
 
 	public static volatile SingularAttribute<Fornecedor, String> fantasia;
+	public static volatile SingularAttribute<Fornecedor, String> razaoSociao;
 	public static volatile SingularAttribute<Fornecedor, String> cnpj;
 
 }

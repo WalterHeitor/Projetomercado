@@ -15,6 +15,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
 import javax.swing.JComboBox;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -72,18 +73,11 @@ public final class ViewProduto extends javax.swing.JInternalFrame {
     }
     public  void retornaFornecedor(Fornecedor f){
         cxCombinacaoFornecedor.setSelectedItem(f.getFantasia());
-        popularCaixasCombinacao();
-
-        
+        System.out.println("Fornecedor ------"+f.getFantasia());
+        viewProduto.setVisible(true);
     }
 
-    public JComboBox<String> getCxCombinacaoFornecedor() {
-        return cxCombinacaoFornecedor;
-    }
-
-    public void setCxCombinacaoFornecedor(JComboBox<String> cxCombinacaoFornecedor) {
-        this.cxCombinacaoFornecedor = cxCombinacaoFornecedor;
-    }
+    
     
     /**
      * Carregar Produtos
@@ -144,6 +138,7 @@ public final class ViewProduto extends javax.swing.JInternalFrame {
         jButtonSalvar = new javax.swing.JButton();
         jButtonCancelar = new javax.swing.JButton();
         jButtonNovo = new javax.swing.JButton();
+        textFornecedor = new javax.swing.JLabel();
 
         setClosable(true);
         setTitle("Cadastro de Produtos");
@@ -197,7 +192,6 @@ public final class ViewProduto extends javax.swing.JInternalFrame {
             }
         });
 
-        cxCombinacaoFornecedor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cxCombinacaoFornecedor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cxCombinacaoFornecedorActionPerformed(evt);
@@ -377,6 +371,8 @@ public final class ViewProduto extends javax.swing.JInternalFrame {
             }
         });
 
+        textFornecedor.setText("jLabel9");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -397,6 +393,10 @@ public final class ViewProduto extends javax.swing.JInternalFrame {
                         .addGap(50, 50, 50)
                         .addComponent(jButtonSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addComponent(textFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -405,7 +405,9 @@ public final class ViewProduto extends javax.swing.JInternalFrame {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(67, 67, 67)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(textFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jButtonEditar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButtonSalvar, javax.swing.GroupLayout.DEFAULT_SIZE, 93, Short.MAX_VALUE)
@@ -494,6 +496,7 @@ public final class ViewProduto extends javax.swing.JInternalFrame {
     
     private void botaoNovoFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoNovoFornecedorActionPerformed
         novoFornecedor();
+        popularCaixasCombinacao();
     }//GEN-LAST:event_botaoNovoFornecedorActionPerformed
 
     public void novoFornecedor(){
@@ -507,6 +510,22 @@ public final class ViewProduto extends javax.swing.JInternalFrame {
        // popularCaixasCombinacao();
     }//GEN-LAST:event_cxCombinacaoFornecedorActionPerformed
 
+    public JComboBox<Object> getCxCombinacaoFornecedor() {
+        return cxCombinacaoFornecedor;
+    }
+
+    public void setCxCombinacaoFornecedor(JComboBox<Object> cxCombinacaoFornecedor) {
+        this.cxCombinacaoFornecedor = cxCombinacaoFornecedor;
+    }
+
+    public JLabel getTextFornecedor() {
+        return textFornecedor;
+    }
+
+    public void setTextFornecedor(JLabel textFornecedor) {
+        this.textFornecedor = textFornecedor;
+    }
+
     
     
     
@@ -515,7 +534,7 @@ public final class ViewProduto extends javax.swing.JInternalFrame {
     private javax.swing.JButton botaoNovoFornecedor;
     private javax.swing.JComboBox<String> categoriaP;
     private javax.swing.JTextField codigoP;
-    private javax.swing.JComboBox<String> cxCombinacaoFornecedor;
+    private javax.swing.JComboBox<Object> cxCombinacaoFornecedor;
     private javax.swing.JTextField descricaoP;
     private javax.swing.JButton jButtonCancelar;
     private javax.swing.JButton jButtonEditar;
@@ -540,6 +559,7 @@ public final class ViewProduto extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField precoP;
+    private javax.swing.JLabel textFornecedor;
     // End of variables declaration//GEN-END:variables
 
 }

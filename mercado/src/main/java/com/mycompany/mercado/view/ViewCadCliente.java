@@ -549,9 +549,9 @@ public class ViewCadCliente extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
     private void estadoCMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_estadoCMouseClicked
-        
+
         popularCaixaDECombinacao();
-        
+
     }//GEN-LAST:event_estadoCMouseClicked
 
     public void cancelar(){
@@ -592,4 +592,7 @@ public class ViewCadCliente extends javax.swing.JInternalFrame {
     private javax.swing.JTable jTableClientes;
     private javax.swing.JTextField nomeC;
     // End of variables declaration//GEN-END:variables
+
 }
+
+

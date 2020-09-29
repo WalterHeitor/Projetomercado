@@ -139,7 +139,8 @@ public class ViewMenu extends javax.swing.JFrame {
         
     }
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        telaCadCliente();
+       // telaCadCliente();
+       dialogCadCliente();
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
@@ -150,9 +151,13 @@ public class ViewMenu extends javax.swing.JFrame {
         jDesktopPaneMenu.add(telaCadCliente);
         telaCadCliente.setVisible(true);
     }
+    public void dialogCadCliente(){
+        DialogCadCliente cadCliente = new DialogCadCliente(this, true);
+        cadCliente.setVisible(true);
+    }
     
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-        telaFornecedor();
+        dialogCadFornecedor();
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     public void telaFornecedor(){
@@ -160,7 +165,10 @@ public class ViewMenu extends javax.swing.JFrame {
         jDesktopPaneMenu.add(telaCadFornecedor);
         telaCadFornecedor.setVisible(true);
     }
-    
+    public void dialogCadFornecedor(){
+        DialogCadFornecedor cadFornecedor = new DialogCadFornecedor(this, true);
+        cadFornecedor.setVisible(true);
+    }
     
     /**
      * @param args the command line arguments

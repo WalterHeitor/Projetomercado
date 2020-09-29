@@ -8,9 +8,11 @@ package com.mycompany.mercado.view;
 import com.mycompany.mercado.dao.FornecedorDAO;
 import com.mycompany.mercado.doumain.Fornecedor;
 import java.util.List;
+import java.util.Locale;
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
 import javax.swing.JComboBox;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -24,7 +26,6 @@ public class ViewCadFornecedor extends javax.swing.JInternalFrame {
 
     //VARIAVEIS
     Fornecedor fornecedor = new Fornecedor();
-    ViewProduto cxComb = new ViewProduto();
     /**
      * Creates new form ViewCadFornecedor
      */
@@ -329,14 +330,31 @@ public class ViewCadFornecedor extends javax.swing.JInternalFrame {
             }
             
         }
-        List<Fornecedor> fornecedores = ViewProduto.getInstance().listar();
-        cxComb.setCxCombinacaoFornecedor((JComboBox<String>) fornecedores);
-        
-        ViewProduto.getInstance().retornaFornecedor(fornecedor);
-         
-        ViewProduto.getInstance().popularCaixasCombinacao();
+        executaMetodo();
         this.dispose();
         
+        
+    }
+    public void atualizarCombobox(){
+        JComboBox<Object> comboBox = new JComboBox<>();
+        List<Fornecedor>fornecedors = ViewProduto.getInstance().listar();
+        for(Fornecedor f : fornecedors){
+            comboBox.addItem(f.getFantasia());
+        }
+        ViewProduto.getInstance().setCxCombinacaoFornecedor(comboBox);
+    }
+   
+    private ViewProduto viewProduto;
+    public void moostrarTelaProduto(ViewProduto vp){
+        this.viewProduto = vp;
+        ViewMenu.getJDesktopPane().add(viewProduto);
+        setVisible(true);
+    }
+    public void executaMetodo(){
+        System.out.println("RETORNA FORNECEDOR");
+        ViewProduto.getInstance().retornaFornecedor(fornecedor);
+         System.out.println("POPULA CX FORNECEDOR");
+        ViewProduto.getInstance().popularCaixasCombinacao();
     }
     
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
