@@ -347,17 +347,15 @@ public class DialogCadFornecedor extends javax.swing.JDialog {
     public void cancelar(){
         
     }
-    private ViewProduto viewProduto;
-    public void mostrarTelaProduto(ViewProduto vp){
-        this.viewProduto = vp;
-        ViewMenu.getJDesktopPane().add(viewProduto);
-        setVisible(true);
-    }
+    private DialogCadProduto cadProduto;
+    
     public void executaMetodo(){
+         cadProduto = cadProduto.getInstance();
         System.out.println("RETORNA FORNECEDOR");
-        ViewProduto.getInstance().retornaFornecedor(fornecedor);
+        cadProduto.getInstance().retornaFornecedor(fornecedor);
          System.out.println("POPULA CX FORNECEDOR");
-        ViewProduto.getInstance().popularCaixasCombinacao();
+        cadProduto.getInstance().popularCaixasCombinacao();
+        cadProduto.setVisible(true);
     }
     /**
      * @param args the command line arguments

@@ -23,7 +23,7 @@ public class ViewMenu extends javax.swing.JFrame {
         }
         return viewMenu;
     }
-    
+    public  DialogCadProduto cadProduto;
     public static JDesktopPane getJDesktopPane(){
         return getInstance().jDesktopPaneMenu;
     }
@@ -126,7 +126,9 @@ public class ViewMenu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-       telaProduto();
+       //telaProduto();
+       cadProduto = cadProduto.getInstance();
+       cadProduto.setVisible(true);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     /**

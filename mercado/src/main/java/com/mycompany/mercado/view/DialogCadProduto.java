@@ -29,13 +29,23 @@ public class DialogCadProduto extends javax.swing.JDialog {
     public DialogCadProduto(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        popularCaixasCombinacao();
+       popularCaixasCombinacao();
     }
 
     //DECLARAÇÂO DE VARIAVEIS
     Produto produto = new Produto();
     Categoria categoria = new Categoria();
     Fornecedor fornecedor = new Fornecedor();
+
+    private static DialogCadProduto cadProduto;
+    public static DialogCadProduto getInstance(){
+        if(cadProduto == null){
+            cadProduto = new DialogCadProduto(new javax.swing.JFrame(), true);
+        }
+        return cadProduto;
+    }
+    
+    
     
     //METODOS
     
@@ -172,11 +182,6 @@ public class DialogCadProduto extends javax.swing.JDialog {
         });
 
         cxCombinacaoFornecedor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione" }));
-        cxCombinacaoFornecedor.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cxCombinacaoFornecedorActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -404,16 +409,12 @@ public class DialogCadProduto extends javax.swing.JDialog {
 
     private void botaoNovoFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoNovoFornecedorActionPerformed
         novoFornecedor();
-        popularCaixasCombinacao();
+        
     }//GEN-LAST:event_botaoNovoFornecedorActionPerformed
 
     private void botaoNovoCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoNovoCategoriaActionPerformed
         //novoCategoria();
     }//GEN-LAST:event_botaoNovoCategoriaActionPerformed
-
-    private void cxCombinacaoFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cxCombinacaoFornecedorActionPerformed
-        // popularCaixasCombinacao();
-    }//GEN-LAST:event_cxCombinacaoFornecedorActionPerformed
 
     private void jButtonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarActionPerformed
         editar();
@@ -498,14 +499,15 @@ public class DialogCadProduto extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                DialogCadProduto dialog = new DialogCadProduto(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+                //DialogCadProduto dialog = new DialogCadProduto(new javax.swing.JFrame(), true);
+                
+                getInstance().addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
                         System.exit(0);
                     }
                 });
-                dialog.setVisible(true);
+                getInstance().setVisible(true);
             }
         });
     }
