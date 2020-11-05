@@ -13,20 +13,23 @@ import javax.swing.JDesktopPane;
  */
 public class ViewMenu extends javax.swing.JFrame {
 
-    
     private static final long serialVersionUID = 1L;
-    
+
     private static ViewMenu viewMenu;
-    public static ViewMenu getInstance(){
-        if(viewMenu == null){
+
+    public static ViewMenu getInstance() {
+        if (viewMenu == null) {
             viewMenu = new ViewMenu();
         }
         return viewMenu;
     }
-    public  DialogCadProduto cadProduto;
-    public static JDesktopPane getJDesktopPane(){
+    public DialogCadProduto cadProduto;
+    public DialogCadCliente cadCliente;
+
+    public static JDesktopPane getJDesktopPane() {
         return getInstance().jDesktopPaneMenu;
     }
+
     /**
      * Creates new form ViewMenu
      */
@@ -47,10 +50,10 @@ public class ViewMenu extends javax.swing.JFrame {
         jDesktopPaneMenu = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu4 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
+        jMenuItemClientes = new javax.swing.JMenuItem();
+        jMenuItemProdutos = new javax.swing.JMenuItem();
+        jMenuItemCategoria = new javax.swing.JMenuItem();
+        jMenuItemFornecedores = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -70,32 +73,32 @@ public class ViewMenu extends javax.swing.JFrame {
         jMenu4.setMnemonic('C');
         jMenu4.setText("Cadastros");
 
-        jMenuItem1.setText("Clientes");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItemClientes.setText("Clientes");
+        jMenuItemClientes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                jMenuItemClientesActionPerformed(evt);
             }
         });
-        jMenu4.add(jMenuItem1);
+        jMenu4.add(jMenuItemClientes);
 
-        jMenuItem2.setText("Produtos");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItemProdutos.setText("Produtos");
+        jMenuItemProdutos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
+                jMenuItemProdutosActionPerformed(evt);
             }
         });
-        jMenu4.add(jMenuItem2);
+        jMenu4.add(jMenuItemProdutos);
 
-        jMenuItem3.setText("Categoria");
-        jMenu4.add(jMenuItem3);
+        jMenuItemCategoria.setText("Categoria");
+        jMenu4.add(jMenuItemCategoria);
 
-        jMenuItem4.setText("Fornecedores");
-        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItemFornecedores.setText("Fornecedores");
+        jMenuItemFornecedores.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem4ActionPerformed(evt);
+                jMenuItemFornecedoresActionPerformed(evt);
             }
         });
-        jMenu4.add(jMenuItem4);
+        jMenu4.add(jMenuItemFornecedores);
 
         jMenuBar1.add(jMenu4);
 
@@ -125,53 +128,41 @@ public class ViewMenu extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-       //telaProduto();
-       cadProduto = cadProduto.getInstance();
-       cadProduto.setVisible(true);
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
+    private void jMenuItemProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemProdutosActionPerformed
+        //telaProduto();
 
+    }//GEN-LAST:event_jMenuItemProdutosActionPerformed
+
+    private void jMenuItemClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemClientesActionPerformed
+        dialogCadCliente();
+    }//GEN-LAST:event_jMenuItemClientesActionPerformed
     /**
-     * tela de cadastro de produto
+     * tela cadastro de produtos
      */
-    private void telaProduto(){
-        ViewProduto telaProd = new ViewProduto();
-        jDesktopPaneMenu.add(telaProd);
-        telaProd.setVisible(true);
-        
+    public void dialogCadProduto() {
+        cadProduto = DialogCadProduto.getInstance();
+        cadProduto.setVisible(true);
     }
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-       // telaCadCliente();
-       dialogCadCliente();
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
      * tela de cadastro de clientes
      */
-    public void telaCadCliente(){
-        ViewCadCliente telaCadCliente = new ViewCadCliente();
-        jDesktopPaneMenu.add(telaCadCliente);
-        telaCadCliente.setVisible(true);
-    }
-    public void dialogCadCliente(){
-        DialogCadCliente cadCliente = new DialogCadCliente(this, true);
+    public void dialogCadCliente() {
+        cadCliente = DialogCadCliente.getInstance();
         cadCliente.setVisible(true);
     }
-    
-    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-        dialogCadFornecedor();
-    }//GEN-LAST:event_jMenuItem4ActionPerformed
 
-    public void telaFornecedor(){
-        ViewCadFornecedor telaCadFornecedor = new ViewCadFornecedor();
-        jDesktopPaneMenu.add(telaCadFornecedor);
-        telaCadFornecedor.setVisible(true);
-    }
-    public void dialogCadFornecedor(){
+    private void jMenuItemFornecedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemFornecedoresActionPerformed
+        dialogCadFornecedor();
+    }//GEN-LAST:event_jMenuItemFornecedoresActionPerformed
+    /**
+     * tela cadastro de produtos
+     */
+    public void dialogCadFornecedor() {
         DialogCadFornecedor cadFornecedor = new DialogCadFornecedor(this, true);
         cadFornecedor.setVisible(true);
     }
-    
+
     /**
      * @param args the command line arguments
      */
@@ -212,9 +203,9 @@ public class ViewMenu extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItemCategoria;
+    private javax.swing.JMenuItem jMenuItemClientes;
+    private javax.swing.JMenuItem jMenuItemFornecedores;
+    private javax.swing.JMenuItem jMenuItemProdutos;
     // End of variables declaration//GEN-END:variables
 }

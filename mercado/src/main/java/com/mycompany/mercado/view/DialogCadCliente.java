@@ -45,6 +45,15 @@ public class DialogCadCliente extends javax.swing.JDialog {
     Endereco endereco = new Endereco();
     Cidade cidade = new Cidade();
     Estado estado = new Estado();
+    
+    
+    private static DialogCadCliente cadCliente;
+    public static DialogCadCliente getInstance(){
+        if(cadCliente == null){
+            cadCliente = new DialogCadCliente(new javax.swing.JFrame(), true);
+        }
+        return cadCliente;
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -401,15 +410,16 @@ public class DialogCadCliente extends javax.swing.JDialog {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1248, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1231, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 891, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 893, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -596,14 +606,14 @@ public class DialogCadCliente extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                DialogCadCliente dialog = new DialogCadCliente(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+                //DialogCadCliente dialog = new DialogCadCliente(new javax.swing.JFrame(), true);
+                getInstance().addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
                         System.exit(0);
                     }
                 });
-                dialog.setVisible(true);
+                getInstance().setVisible(true);
             }
         });
     }
