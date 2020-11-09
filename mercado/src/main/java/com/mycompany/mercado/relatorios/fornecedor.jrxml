@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="3c4f526b-1619-42ab-9644-6e6ebb6d7dde">
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     fornecedor."cnpj" AS fornecedor_cnpj,
+     fornecedor."fantasia" AS fornecedor_fantasia,
+     fornecedor."razaosociao" AS fornecedor_razaosociao,
+     fornecedor."id_pessoa" AS fornecedor_id_pessoa,
+     pessoa."id_pessoa" AS pessoa_id_pessoa,
+     pessoa."datacadastro" AS pessoa_datacadastro,
+     pessoa."email" AS pessoa_email,
+     pessoa."nome" AS pessoa_nome,
+     pessoa."telefone_id" AS pessoa_telefone_id
+FROM
+     "public"."pessoa" pessoa INNER JOIN "public"."fornecedor" fornecedor ON pessoa."id_pessoa" = fornecedor."id_pessoa"]]>
+	</queryString>
+	<field name="fornecedor_cnpj" class="java.lang.String"/>
+	<field name="fornecedor_fantasia" class="java.lang.String"/>
+	<field name="fornecedor_razaosociao" class="java.lang.String"/>
+	<field name="fornecedor_id_pessoa" class="java.lang.Integer"/>
+	<field name="pessoa_id_pessoa" class="java.lang.Integer"/>
+	<field name="pessoa_datacadastro" class="java.sql.Timestamp"/>
+	<field name="pessoa_email" class="java.lang.String"/>
+	<field name="pessoa_nome" class="java.lang.String"/>
+	<field name="pessoa_telefone_id" class="java.lang.Integer"/>
+	<group name="pessoa_id_pessoa">
+		<groupExpression><![CDATA[$F{pessoa_id_pessoa}]]></groupExpression>
+	</group>
+	<group name="fornecedor_cnpj">
+		<groupExpression><![CDATA[$F{fornecedor_cnpj}]]></groupExpression>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

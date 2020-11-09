@@ -129,13 +129,24 @@ public class ViewMenu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItemProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemProdutosActionPerformed
-        //telaProduto();
+        dialogCadProduto();
 
     }//GEN-LAST:event_jMenuItemProdutosActionPerformed
 
     private void jMenuItemClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemClientesActionPerformed
         dialogCadCliente();
     }//GEN-LAST:event_jMenuItemClientesActionPerformed
+
+    private void jMenuItemFornecedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemFornecedoresActionPerformed
+        dialogCadFornecedor();
+    }//GEN-LAST:event_jMenuItemFornecedoresActionPerformed
+    /**
+     * tela cadastro de produtos
+     */
+    public void dialogCadFornecedor() {
+        DialogCadFornecedor cadFornecedor = new DialogCadFornecedor(this, true);
+        cadFornecedor.setVisible(true);
+    }
     /**
      * tela cadastro de produtos
      */
@@ -150,17 +161,6 @@ public class ViewMenu extends javax.swing.JFrame {
     public void dialogCadCliente() {
         cadCliente = DialogCadCliente.getInstance();
         cadCliente.setVisible(true);
-    }
-
-    private void jMenuItemFornecedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemFornecedoresActionPerformed
-        dialogCadFornecedor();
-    }//GEN-LAST:event_jMenuItemFornecedoresActionPerformed
-    /**
-     * tela cadastro de produtos
-     */
-    public void dialogCadFornecedor() {
-        DialogCadFornecedor cadFornecedor = new DialogCadFornecedor(this, true);
-        cadFornecedor.setVisible(true);
     }
 
     /**

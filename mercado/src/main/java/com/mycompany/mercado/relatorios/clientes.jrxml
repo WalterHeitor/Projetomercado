@@ -1,26 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c384915d-342b-444d-878c-a8c426786c55">
-	<queryString language="SQL">
-		<![CDATA[SELECT
-     *,
-     cliente."id" AS cliente_id,
-     cliente."email" AS cliente_email,
-     cliente."cpf" AS cliente_cpf,
-     cliente."nome" AS cliente_nome
-FROM
-     "cliente" cliente]]>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="200fcbbb-ea7e-438d-98fc-e6f8e8695b2a">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="51"/>
+	<queryString>
+		<![CDATA[select *from cliente]]>
 	</queryString>
-	<field name="id" class="java.lang.Integer"/>
 	<field name="cpf" class="java.lang.String"/>
-	<field name="email" class="java.lang.String"/>
-	<field name="nome" class="java.lang.String"/>
-	<field name="cliente_id" class="java.lang.Integer"/>
-	<field name="cliente_email" class="java.lang.String"/>
-	<field name="cliente_cpf" class="java.lang.String"/>
-	<field name="cliente_nome" class="java.lang.String"/>
-	<group name="id">
-		<groupExpression><![CDATA[$F{id}]]></groupExpression>
-	</group>
+	<field name="id_pessoa" class="java.lang.Integer"/>
+	<variable name="id_pessoa_1" class="java.lang.Integer" resetType="Column" calculation="Sum">
+		<variableExpression><![CDATA[$F{id_pessoa}]]></variableExpression>
+	</variable>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -31,10 +21,28 @@ FROM
 		<band height="35" splitType="Stretch"/>
 	</pageHeader>
 	<columnHeader>
-		<band height="61" splitType="Stretch"/>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="100" height="20" uuid="631ae060-aeb8-4a8a-8623-a45e38a56f3b"/>
+				<text><![CDATA[id_pessoa]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="113" y="0" width="100" height="20" uuid="a77ac7cb-b23e-411f-9987-a5aa6cd11d62"/>
+				<text><![CDATA[cpf]]></text>
+			</staticText>
+		</band>
 	</columnHeader>
 	<detail>
-		<band height="125" splitType="Stretch"/>
+		<band height="125" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="100" height="20" uuid="157a33dc-31b6-45c5-9f44-f5e53ba5b861"/>
+				<textFieldExpression><![CDATA[$F{id_pessoa}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="113" y="0" width="100" height="20" uuid="ffd3c78b-358b-45b8-bc30-d6339baad7bb"/>
+				<textFieldExpression><![CDATA[$F{cpf}]]></textFieldExpression>
+			</textField>
+		</band>
 	</detail>
 	<columnFooter>
 		<band height="45" splitType="Stretch"/>

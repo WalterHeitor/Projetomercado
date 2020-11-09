@@ -494,7 +494,8 @@ public class DialogCadCliente extends javax.swing.JDialog {
                 createEntityManager();
         try {
             manager.getTransaction().begin();
-            cliente = ClienteDAO.getInstance().getById(Integer.parseInt(codigoC.getText()));
+            cliente = ClienteDAO.getInstance().getById(Integer
+                    .parseInt(codigoC.getText()));
             cliente.setNome(nomeC.getText().trim());
             cliente.setCpf(cpfC.getText().trim());
             cliente.setEmail(emailC.getText().trim());
@@ -522,7 +523,8 @@ public class DialogCadCliente extends javax.swing.JDialog {
             // manager.merge(estado);
             manager.merge(cidade);
             manager.getTransaction().commit();
-            JOptionPane.showMessageDialog(null, "Cadastro do cliente editado com sucesso");
+            JOptionPane.showMessageDialog(null, 
+                    "Cadastro do cliente editado com sucesso");
         } catch (Exception e) {
             System.out.println("Erro ao Editar: " + e);
             JOptionPane.showMessageDialog(null, e.getMessage(), "Cadastro nao editado",

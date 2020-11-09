@@ -30,14 +30,22 @@ public class DialogCadFornecedor extends javax.swing.JDialog {
     //VARIAVEIS
     Fornecedor fornecedor = new Fornecedor();
 
+    private DialogCadFornecedor cadFornecedor;
+
+    public DialogCadFornecedor getInstance() {
+        if (cadFornecedor == null) {
+            cadFornecedor = new DialogCadFornecedor(new javax.swing.JFrame(), true);
+        }
+        return cadFornecedor;
+    }
+
     //METODOS
-    
-    public void carregarjTableFornecedor(){
-        List<Fornecedor>fornecedores = FornecedorDAO.getInstance().findAll();
+    public void carregarjTableFornecedor() {
+        List<Fornecedor> fornecedores = FornecedorDAO.getInstance().findAll();
         DefaultTableModel model = (DefaultTableModel) jTableFornecedor.getModel();
         model.setNumRows(0);
         //Inserir Fornecedores
-        for(Fornecedor f : fornecedores){
+        for (Fornecedor f : fornecedores) {
             model.addRow(new Object[]{
                 f.getId_pessoa(),
                 f.getNome(),
@@ -47,6 +55,22 @@ public class DialogCadFornecedor extends javax.swing.JDialog {
             });
         }
     }
+
+    public void alterarTable() {
+        if (jTableFornecedor.getSelectedRow() != -1) {
+            Integer codigo = (Integer) jTableFornecedor.
+                    getValueAt(jTableFornecedor.getSelectedRow(), 0);
+            fornecedor = FornecedorDAO.getInstance().getById(codigo);
+            codigoF.setText(fornecedor.getId_pessoa().toString());
+            nomeF.setText(fornecedor.getNome());
+            cnpjF.setText(fornecedor.getCnpj());
+            emailF.setText(fornecedor.getEmail());
+            razaoSocialF.setText(fornecedor.getRazaoSociao());
+            dtCadF.setCalendar(fornecedor.getDataCadastro());
+            nomeFantaziaF.setText(fornecedor.getFantasia());
+        }
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -187,6 +211,11 @@ public class DialogCadFornecedor extends javax.swing.JDialog {
                 "Codigo", "Nome", "CNPJ", "Email", "Fantazia"
             }
         ));
+        jTableFornecedor.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableFornecedorMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(jTableFornecedor);
 
         jButtonEditar.setFont(new java.awt.Font("Wide Latin", 0, 14)); // NOI18N
@@ -309,22 +338,28 @@ public class DialogCadFornecedor extends javax.swing.JDialog {
         novo();
     }//GEN-LAST:event_jButtonNovoActionPerformed
 
-    public void salvar(){
-        
+    private void jTableFornecedorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableFornecedorMouseClicked
+        alterarTable();
+    }//GEN-LAST:event_jTableFornecedorMouseClicked
+
+    public void salvar() {
+
         EntityManager manager = Persistence.createEntityManagerFactory("vendas").
                 createEntityManager();
         String codigo = codigoF.getText();
-        if (codigo.equalsIgnoreCase("")){
+        if (codigo.equalsIgnoreCase("")) {
             try {
                 manager.getTransaction().begin();
-                fornecedor = new Fornecedor(nomeFantaziaF.getText().trim(), razaoSocialF.getText().trim(), cnpjF.getText().trim(), nomeF.getText().trim(),
+                fornecedor = new Fornecedor(nomeFantaziaF.getText().trim(), 
+                        razaoSocialF.getText().trim(),
+                        cnpjF.getText().trim(), nomeF.getText().trim(),
                         emailF.getText().trim(), dtCadF.getCalendar());
                 manager.persist(fornecedor);
                 manager.getTransaction().commit();
-                
+
                 JOptionPane.showMessageDialog(null, "Cadastro do Fornecedor realizado com sucesso");
             } catch (Exception e) {
-            System.out.println("Erro ao Salvar: " + e);
+                System.out.println("Erro ao Salvar: " + e);
                 JOptionPane.showMessageDialog(null, e.getMessage(), "Cadastro nao realizado",
                         JOptionPane.ERROR_MESSAGE);
                 manager.getTransaction().rollback();
@@ -332,31 +367,64 @@ public class DialogCadFornecedor extends javax.swing.JDialog {
                 manager.close();
             }
             
+
+        } else {
+            editar();
         }
+        carregarjTableFornecedor();
         executaMetodo();
         this.dispose();
-        
-        
+
     }
-    public void novo(){
-        
+
+    public void novo() {
+
     }
-    public void editar(){
-        
+
+    public void editar() {
+
+        EntityManager manager = Persistence.createEntityManagerFactory("vendas").
+                createEntityManager();
+        try {
+            manager.getTransaction().begin();
+            fornecedor = FornecedorDAO.getInstance().getById(Integer
+                    .parseInt(codigoF.getText()));
+            fornecedor.setNome(nomeF.getText().trim());
+            fornecedor.setCnpj(cnpjF.getText().trim());
+            fornecedor.setEmail(emailF.getText().trim());
+            fornecedor.setFantasia(nomeFantaziaF.getText().trim());
+            fornecedor.setRazaoSociao(razaoSocialF.getText().trim());
+            fornecedor.setDataCadastro(dtCadF.getCalendar());
+            manager.merge(fornecedor);
+            manager.getTransaction().commit();
+            JOptionPane.showMessageDialog(null, 
+                    "Cadastro do fornecedor alterado editado com sucesso");
+        }
+        catch (Exception e) {
+            System.out.println("Erro ao Editar: " + e);
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Cadastro nao editado",
+                    JOptionPane.ERROR_MESSAGE);
+            manager.getTransaction().rollback();
+        } finally {
+            manager.close();
+        }
+        carregarjTableFornecedor();
     }
-    public void cancelar(){
-        
+
+    public void cancelar() {
+
     }
     private DialogCadProduto cadProduto;
-    
-    public void executaMetodo(){
-         cadProduto = cadProduto.getInstance();
+
+    public void executaMetodo() {
+        cadProduto = DialogCadProduto.getInstance();
         System.out.println("RETORNA FORNECEDOR");
         cadProduto.getInstance().retornaFornecedor(fornecedor);
-         System.out.println("POPULA CX FORNECEDOR");
+        System.out.println("POPULA CX FORNECEDOR");
         cadProduto.getInstance().popularCaixasCombinacao();
         cadProduto.setVisible(true);
     }
+
     /**
      * @param args the command line arguments
      */
