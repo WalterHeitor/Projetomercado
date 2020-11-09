@@ -378,6 +378,12 @@ public class DialogCadFornecedor extends javax.swing.JDialog {
     }
 
     public void novo() {
+        nomeFantaziaF.setText("");
+        razaoSocialF.setText("");
+        cnpjF.setText("");
+        nomeF.setText("");
+        emailF.setText("");
+        dtCadF.setCalendar(null);
 
     }
 
@@ -413,6 +419,7 @@ public class DialogCadFornecedor extends javax.swing.JDialog {
 
     public void cancelar() {
 
+        this.dispose();
     }
     private DialogCadProduto cadProduto;
 
