@@ -30,9 +30,11 @@ public class DialogCadFornecedor extends javax.swing.JDialog {
     //VARIAVEIS
     Fornecedor fornecedor = new Fornecedor();
 
-    private DialogCadFornecedor cadFornecedor;
+    private DialogCadProduto cadProduto;
+    private DialogPesquisarFornecedor pesquisarFornecedor;
+    private static DialogCadFornecedor cadFornecedor;
 
-    public DialogCadFornecedor getInstance() {
+    public static DialogCadFornecedor getInstance() {
         if (cadFornecedor == null) {
             cadFornecedor = new DialogCadFornecedor(new javax.swing.JFrame(), true);
         }
@@ -421,7 +423,7 @@ public class DialogCadFornecedor extends javax.swing.JDialog {
 
         this.dispose();
     }
-    private DialogCadProduto cadProduto;
+    
 
     public void executaMetodo() {
         cadProduto = DialogCadProduto.getInstance();

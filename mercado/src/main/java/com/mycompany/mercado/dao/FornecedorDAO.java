@@ -45,6 +45,11 @@ public class FornecedorDAO {
     public Fornecedor getById(final Integer id){
         return entityManager.find(Fornecedor.class, id);
     }
+    public Fornecedor getCnpj(){
+        Fornecedor f = new Fornecedor();
+        
+        return f;
+    }
     public List<Fornecedor> findAll(){
         return entityManager.createQuery("FROM "+ Fornecedor.class.getName())
                 .getResultList();

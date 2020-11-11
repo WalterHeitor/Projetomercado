@@ -101,7 +101,8 @@ public class Produto implements Serializable {
         this.pessoa = pessoa;
     }
 
-    public Produto(String descricao, String marca, Double precoDeCusto, Double precoDeVenda, Integer qtd, String unidade, Categoria categoria, Pessoa pessoa) {
+    public Produto(String id,String descricao, String marca, Double precoDeCusto, Double precoDeVenda, Integer qtd, String unidade, Categoria categoria, Pessoa pessoa) {
+        this.id = id;
         this.descricao = descricao;
         this.marca = marca;
         this.precoDeCusto = precoDeCusto;

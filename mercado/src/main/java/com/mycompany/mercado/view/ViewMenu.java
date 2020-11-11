@@ -25,6 +25,7 @@ public class ViewMenu extends javax.swing.JFrame {
     }
     public DialogCadProduto cadProduto;
     public DialogCadCliente cadCliente;
+    public DialogCadFornecedor cadFornecedor;
 
     public static JDesktopPane getJDesktopPane() {
         return getInstance().jDesktopPaneMenu;
@@ -144,7 +145,7 @@ public class ViewMenu extends javax.swing.JFrame {
      * tela cadastro de produtos
      */
     public void dialogCadFornecedor() {
-        DialogCadFornecedor cadFornecedor = new DialogCadFornecedor(this, true);
+        cadFornecedor = DialogCadFornecedor.getInstance();
         cadFornecedor.setVisible(true);
     }
     /**

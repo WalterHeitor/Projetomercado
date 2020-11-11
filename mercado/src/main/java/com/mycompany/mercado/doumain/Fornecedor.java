@@ -77,6 +77,11 @@ public class Fornecedor extends Pessoa {
         this.cnpj = cnpj;
     }
 
+    @Override
+    public String toString() {
+        return "Fornecedor{" + "fantasia=" + fantasia + ", razaoSociao=" + razaoSociao + ", cnpj=" + cnpj + '}';
+    }
+
     
     
 }
