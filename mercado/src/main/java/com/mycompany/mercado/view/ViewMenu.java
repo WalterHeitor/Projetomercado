@@ -5,6 +5,9 @@
  */
 package com.mycompany.mercado.view;
 
+import com.mycompany.mercado.view.DialogCad.DialogCadFornecedor;
+import com.mycompany.mercado.view.DialogCad.DialogCadProduto;
+import com.mycompany.mercado.view.DialogCad.DialogCadCliente;
 import javax.swing.JDesktopPane;
 
 /**
