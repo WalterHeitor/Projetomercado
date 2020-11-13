@@ -8,6 +8,7 @@ package com.mycompany.mercado.view.DialogPesquisa;
 import com.mycompany.mercado.view.DialogCad.DialogCadProduto;
 import com.mycompany.mercado.dao.FornecedorDAO;
 import com.mycompany.mercado.doumain.Fornecedor;
+import com.mycompany.mercado.view.ViewMenu;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
@@ -65,6 +66,9 @@ public class DialogPesquisarFornecedor extends javax.swing.JDialog {
             dialogCadProduto.setVisible(true);
         }
     }
+    public void novoFornecedor(){
+        ViewMenu.getInstance().dialogCadFornecedor();
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -80,6 +84,7 @@ public class DialogPesquisarFornecedor extends javax.swing.JDialog {
         jTableFornecedor = new javax.swing.JTable();
         jLabel10 = new javax.swing.JLabel();
         forncSelecionado = new javax.swing.JLabel();
+        botaoNovoFornecedor = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -121,6 +126,15 @@ public class DialogPesquisarFornecedor extends javax.swing.JDialog {
         forncSelecionado.setFont(new java.awt.Font("Wide Latin", 0, 14)); // NOI18N
         forncSelecionado.setText("Selecione na tabela abaixo:");
 
+        botaoNovoFornecedor.setFont(new java.awt.Font("Wide Latin", 0, 13)); // NOI18N
+        botaoNovoFornecedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/mercado/imagens/add.png"))); // NOI18N
+        botaoNovoFornecedor.setText("Fornecedor");
+        botaoNovoFornecedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoNovoFornecedorActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -132,18 +146,22 @@ public class DialogPesquisarFornecedor extends javax.swing.JDialog {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel10)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(forncSelecionado, javax.swing.GroupLayout.DEFAULT_SIZE, 869, Short.MAX_VALUE)))
+                        .addComponent(forncSelecionado, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(botaoNovoFornecedor)
+                        .addGap(76, 76, 76)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(30, 30, 30)
+                .addGap(11, 11, 11)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
-                    .addComponent(forncSelecionado))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 168, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(forncSelecionado)
+                    .addComponent(botaoNovoFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 156, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -170,6 +188,11 @@ public class DialogPesquisarFornecedor extends javax.swing.JDialog {
     private void jTableFornecedorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableFornecedorMouseClicked
        alterarTable();
     }//GEN-LAST:event_jTableFornecedorMouseClicked
+
+    private void botaoNovoFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoNovoFornecedorActionPerformed
+        novoFornecedor();
+
+    }//GEN-LAST:event_botaoNovoFornecedorActionPerformed
 
     /**
      * @param args the command line arguments
@@ -214,6 +237,7 @@ public class DialogPesquisarFornecedor extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton botaoNovoFornecedor;
     private javax.swing.JLabel forncSelecionado;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JPanel jPanel1;

@@ -31,8 +31,8 @@ public class DialogCadProduto extends javax.swing.JDialog {
     public DialogCadProduto(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-       
-       carregarProdutos();
+
+        carregarProdutos();
     }
 
     //DECLARAÇÂO DE VARIAVEIS
@@ -42,26 +42,27 @@ public class DialogCadProduto extends javax.swing.JDialog {
 
     public DialogPesquisarFornecedor pesquisarFornecedor;
     public DialogPesquisaCategoria pesquisaCategoria;
-    
+
     private static DialogCadProduto cadProduto;
-    
+
     //METODOS
-    public static DialogCadProduto getInstance(){
-        if(cadProduto == null){
+    public static DialogCadProduto getInstance() {
+        if (cadProduto == null) {
             cadProduto = new DialogCadProduto(new javax.swing.JFrame(), true);
         }
         return cadProduto;
     }
-    public  List<Fornecedor>listar(){
+
+    public List<Fornecedor> listar() {
         List<Fornecedor> fornecedores = FornecedorDAO.getInstance().findAll();
         return fornecedores;
     }
- 
-    public void carregarProdutos(){
+
+    public void carregarProdutos() {
         List<Produto> listProdutos = ProdutoDAO.getInstance().findAll();
         DefaultTableModel model = (DefaultTableModel) jTableProduto.getModel();
         model.setNumRows(0);
-        for(Produto p: listProdutos){
+        for (Produto p : listProdutos) {
             model.addRow(new Object[]{
                 p.getId(),
                 p.getDescricao(),
@@ -69,11 +70,11 @@ public class DialogCadProduto extends javax.swing.JDialog {
                 p.getPrecoDeCusto(),
                 p.getPrecoDeVenda(),
                 p.getQtd(),
-                
                 p.getCategoria().getNome()
             });
         }
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -434,7 +435,7 @@ public class DialogCadProduto extends javax.swing.JDialog {
 
     private void botaoNovoFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoNovoFornecedorActionPerformed
         novoFornecedor();
-        
+
     }//GEN-LAST:event_botaoNovoFornecedorActionPerformed
 
     private void botaoNovoCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoNovoCategoriaActionPerformed
@@ -455,7 +456,7 @@ public class DialogCadProduto extends javax.swing.JDialog {
 
     private void jButtonNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNovoActionPerformed
         novo();
-        
+
     }//GEN-LAST:event_jButtonNovoActionPerformed
 
     private void jButtonPesquisarFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisarFornecedorActionPerformed
@@ -466,61 +467,73 @@ public class DialogCadProduto extends javax.swing.JDialog {
         pesquisarCategoria();
     }//GEN-LAST:event_buttonPesquisarCategoriaActionPerformed
 
-    public void salvar(){
+    public void salvar() {
         EntityManager manager = Persistence.createEntityManagerFactory("vendas").
                 createEntityManager();
         String codigo = codigoP.getText();
-        System.out.println("fornecedor "+fornecedor.toString());
-        System.out.println("salvo com sucesso");
-        
+        if(codigo.equalsIgnoreCase("")){
             try {
-                manager.getTransaction().begin();
-                produto = new Produto(codigoP.getText().trim(), descricaoP.getText().trim(),
-                        marcaF.getText().trim(), Double.parseDouble(precoCustoP.getText().trim()),
-                        Double.parseDouble(precoVendaP.getText().trim()),
-                        Integer.parseInt(qtdP.getText().trim()), unidadeP.getText().trim(), fornecedor);
-                produto.setCategoria(categoria);
-                manager.persist(produto);
-               // manager.persist(categoria);
-                manager.getTransaction().commit();
-                JOptionPane.showMessageDialog(null, "Cadastro realizado com Sucesso!!!");
-            } catch (Exception e) {
-                System.out.println("Erro ao Salvar: " + e);
-                JOptionPane.showMessageDialog(null, e.getMessage(), "Cadastro de produto nao realizado",
-                        JOptionPane.ERROR_MESSAGE);
-                manager.getTransaction().rollback();
-            }
-        
-        
+            manager.getTransaction().begin();
+            produto = new Produto(codigoP.getText().trim(), descricaoP.getText().trim(),
+                    marcaF.getText().trim(), Double.parseDouble(precoCustoP.getText().trim()),
+                    Double.parseDouble(precoVendaP.getText().trim()),
+                    Integer.parseInt(qtdP.getText().trim()), unidadeP.getText().trim(), fornecedor);
+            produto.setCategoria(categoria);
+            manager.persist(produto);
+            // manager.persist(categoria);
+            manager.getTransaction().commit();
+            JOptionPane.showMessageDialog(null, "Cadastro realizado com Sucesso!!!");
+        } catch (Exception e) {
+            System.out.println("Erro ao Salvar: " + e);
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Cadastro de produto nao realizado",
+                    JOptionPane.ERROR_MESSAGE);
+            manager.getTransaction().rollback();
+        } finally {
+            manager.close();
+        }
+        carregarProdutos();
+        }else{
+            editar();
+        }
+
     }
-    public void novo(){
-        
+
+    public void novo() {
+
     }
-    public void editar(){
-        
+
+    public void editar() {
+
     }
-    public void cancelar(){
-        
+
+    public void cancelar() {
+
     }
-    public void novoFornecedor(){
+
+    public void novoFornecedor() {
         ViewMenu.getInstance().dialogCadFornecedor();
     }
-    public void pesquisarFornecedor(){
+
+    public void pesquisarFornecedor() {
         pesquisarFornecedor = DialogPesquisarFornecedor.getInstance();
         pesquisarFornecedor.setVisible(true);
     }
-    public void pesquisarCategoria(){
+
+    public void pesquisarCategoria() {
         pesquisaCategoria = DialogPesquisaCategoria.getInstance();
         pesquisaCategoria.setVisible(true);
     }
-    public void retornaPesquisa(Fornecedor f){
+
+    public void retornaPesquisa(Fornecedor f) {
         fornecedor = f;
         jLabelPesquisarFornecedor.setText(fornecedor.getNome());
     }
-    public void retornaPesquisaCategoria(Categoria c){
-        categoria = c ;
+
+    public void retornaPesquisaCategoria(Categoria c) {
+        categoria = c;
         labelPesquisarCategoria.setText(categoria.getNome());
     }
+
     /**
      * @param args the command line arguments
      */
@@ -552,7 +565,7 @@ public class DialogCadProduto extends javax.swing.JDialog {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 //DialogCadProduto dialog = new DialogCadProduto(new javax.swing.JFrame(), true);
-                
+
                 getInstance().addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
