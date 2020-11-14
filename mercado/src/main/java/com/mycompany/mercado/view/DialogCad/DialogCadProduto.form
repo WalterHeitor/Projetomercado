@@ -256,6 +256,9 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="codigoP">
+                  <Properties>
+                    <Property name="editable" type="boolean" value="false"/>
+                  </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="descricaoP">
                 </Component>
@@ -438,6 +441,9 @@
                           <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                         </Property>
                       </Properties>
+                      <Events>
+                        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jTableProdutoMouseClicked"/>
+                      </Events>
                     </Component>
                   </SubComponents>
                 </Container>

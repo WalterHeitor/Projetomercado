@@ -5,6 +5,7 @@
  */
 package com.mycompany.mercado.view.DialogCad;
 
+import com.mycompany.mercado.dao.CategoriaDAO;
 import com.mycompany.mercado.dao.FornecedorDAO;
 import com.mycompany.mercado.dao.ProdutoDAO;
 import com.mycompany.mercado.doumain.Categoria;
@@ -129,6 +130,8 @@ public class DialogCadProduto extends javax.swing.JDialog {
 
         jLabel3.setFont(new java.awt.Font("Wide Latin", 0, 14)); // NOI18N
         jLabel3.setText("Categoria:");
+
+        codigoP.setEditable(false);
 
         jLabel4.setFont(new java.awt.Font("Wide Latin", 0, 14)); // NOI18N
         jLabel4.setText("Preço de custo:");
@@ -308,6 +311,11 @@ public class DialogCadProduto extends javax.swing.JDialog {
                 return canEdit [columnIndex];
             }
         });
+        jTableProduto.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableProdutoMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(jTableProduto);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -467,6 +475,10 @@ public class DialogCadProduto extends javax.swing.JDialog {
         pesquisarCategoria();
     }//GEN-LAST:event_buttonPesquisarCategoriaActionPerformed
 
+    private void jTableProdutoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableProdutoMouseClicked
+        alterarTable();
+    }//GEN-LAST:event_jTableProdutoMouseClicked
+
     public void salvar() {
         EntityManager manager = Persistence.createEntityManagerFactory("vendas").
                 createEntityManager();
@@ -504,10 +516,59 @@ public class DialogCadProduto extends javax.swing.JDialog {
 
     public void editar() {
 
+        EntityManager manager = Persistence.createEntityManagerFactory("vendas").
+                createEntityManager();
+        String codigo = codigoP.getText();
+        if(codigo.equalsIgnoreCase("")){
+            JOptionPane.showMessageDialog(null,"Campo de codigo em branco você prescisa selecionar na tabela para editar",
+                    "selecionar na tabela ",
+                    JOptionPane.ERROR_MESSAGE);
+        }else{
+            try {
+            manager.getTransaction().begin();
+            produto = ProdutoDAO.getInstance().getById(codigoP.getText());
+            produto.setDescricao(descricaoP.getText());
+            produto.setPrecoDeCusto(Double.parseDouble(precoCustoP.getText()));
+            produto.setPrecoDeVenda(Double.parseDouble(precoVendaP.getText()));
+            produto.setQtd(Integer.parseInt(qtdP.getText()));
+            produto.setPessoa(fornecedor);
+            produto.setCategoria(categoria);
+            manager.merge(produto);
+            manager.getTransaction().commit();
+            JOptionPane.showMessageDialog(null, "Edição do produto Realizada!!! ", "Sucesso",
+                    JOptionPane.INFORMATION_MESSAGE);
+            
+        } catch (Exception e) {
+            System.out.println("Erro ao Salvar: " + e);
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Cadastro de produto nao realizado",
+                    JOptionPane.ERROR_MESSAGE);
+            manager.getTransaction().rollback();
+        } finally {
+            manager.close();
+        }
+        carregarProdutos();
+        }
     }
 
     public void cancelar() {
 
+    }
+    public void alterarTable(){
+        if(jTableProduto.getSelectedRow() != -1){        
+            String codigo =  (String) jTableProduto.getValueAt(jTableProduto.getSelectedRow(), 0);
+            produto = ProdutoDAO.getInstance().getById(codigo);
+            codigoP.setText(produto.getId());
+            descricaoP.setText(produto.getDescricao());
+            precoCustoP.setText(produto.getPrecoDeCusto().toString());
+            precoVendaP.setText(produto.getPrecoDeVenda().toString());
+            qtdP.setText(produto.getQtd().toString());
+            marcaF.setText(produto.getMarca());
+            unidadeP.setText(produto.getUnidade());
+            fornecedor = FornecedorDAO.getInstance().getById(produto.getPessoa().getId_pessoa());
+            jLabelPesquisarFornecedor.setText(fornecedor.getRazaoSociao());
+            categoria = CategoriaDAO.getInstance().getById(produto.getCategoria().getId());
+            labelPesquisarCategoria.setText(categoria.getNome());
+        }
     }
 
     public void novoFornecedor() {
