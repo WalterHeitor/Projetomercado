@@ -511,7 +511,15 @@ public class DialogCadProduto extends javax.swing.JDialog {
     }
 
     public void novo() {
-
+        codigoP.setText("");
+        descricaoP.setText("");
+        precoCustoP.setText("");
+        precoVendaP.setText("");
+        qtdP.setText("");
+        marcaF.setText("");
+        unidadeP.setText("");
+        jLabelPesquisarFornecedor.setText("Pesquisar");
+        labelPesquisarCategoria.setText("Pesquisar");
     }
 
     public void editar() {
@@ -531,6 +539,8 @@ public class DialogCadProduto extends javax.swing.JDialog {
             produto.setPrecoDeCusto(Double.parseDouble(precoCustoP.getText()));
             produto.setPrecoDeVenda(Double.parseDouble(precoVendaP.getText()));
             produto.setQtd(Integer.parseInt(qtdP.getText()));
+            produto.setMarca(marcaF.getText());
+            produto.setUnidade(unidadeP.getText());
             produto.setPessoa(fornecedor);
             produto.setCategoria(categoria);
             manager.merge(produto);
@@ -551,7 +561,7 @@ public class DialogCadProduto extends javax.swing.JDialog {
     }
 
     public void cancelar() {
-
+        this.dispose();
     }
     public void alterarTable(){
         if(jTableProduto.getSelectedRow() != -1){        
