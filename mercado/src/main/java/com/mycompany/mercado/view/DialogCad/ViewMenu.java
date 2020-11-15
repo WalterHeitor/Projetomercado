@@ -3,11 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompany.mercado.view;
-
-import com.mycompany.mercado.view.DialogCad.DialogCadFornecedor;
-import com.mycompany.mercado.view.DialogCad.DialogCadProduto;
-import com.mycompany.mercado.view.DialogCad.DialogCadCliente;
+package com.mycompany.mercado.view.DialogCad;
 
 /**
  *
@@ -48,8 +44,6 @@ public class ViewMenu extends javax.swing.JFrame {
 
         panelMenu = new javax.swing.JPanel();
         panelVendas = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        nomeVendedor = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu4 = new javax.swing.JMenu();
         jMenuItemClientes = new javax.swing.JMenuItem();
@@ -63,33 +57,17 @@ public class ViewMenu extends javax.swing.JFrame {
 
         panelMenu.setLayout(new java.awt.CardLayout());
 
-        panelVendas.setBackground(new java.awt.Color(175, 207, 245));
-
-        jLabel2.setFont(new java.awt.Font("Wide Latin", 0, 14)); // NOI18N
-        jLabel2.setText("Vendedor:");
-
-        nomeVendedor.setFont(new java.awt.Font("Wide Latin", 0, 14)); // NOI18N
-        nomeVendedor.setText("Selecione.");
+        panelVendas.setBackground(new java.awt.Color(87, 141, 204));
 
         javax.swing.GroupLayout panelVendasLayout = new javax.swing.GroupLayout(panelVendas);
         panelVendas.setLayout(panelVendasLayout);
         panelVendasLayout.setHorizontalGroup(
             panelVendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelVendasLayout.createSequentialGroup()
-                .addContainerGap(493, Short.MAX_VALUE)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(nomeVendedor, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30))
+            .addGap(0, 886, Short.MAX_VALUE)
         );
         panelVendasLayout.setVerticalGroup(
             panelVendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelVendasLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(panelVendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(nomeVendedor))
-                .addContainerGap(530, Short.MAX_VALUE))
+            .addGap(0, 560, Short.MAX_VALUE)
         );
 
         panelMenu.add(panelVendas, "cardVendas");
@@ -207,6 +185,7 @@ public class ViewMenu extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(ViewMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -217,7 +196,6 @@ public class ViewMenu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
@@ -225,7 +203,6 @@ public class ViewMenu extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItemClientes;
     private javax.swing.JMenuItem jMenuItemFornecedores;
     private javax.swing.JMenuItem jMenuItemProdutos;
-    private javax.swing.JLabel nomeVendedor;
     private javax.swing.JPanel panelMenu;
     private javax.swing.JPanel panelVendas;
     // End of variables declaration//GEN-END:variables
