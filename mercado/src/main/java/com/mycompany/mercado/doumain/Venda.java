@@ -7,6 +7,7 @@ package com.mycompany.mercado.doumain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import java.io.Serializable;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Objects;
@@ -38,7 +39,7 @@ public class Venda implements Serializable {
 
     @Temporal(TemporalType.TIMESTAMP)
     @JsonFormat(pattern = "dd/MM/yyyy HH:mm")
-    private Date instante;
+    private Calendar instante;
 
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "venda")
     private Pagamento pagamento;
@@ -53,12 +54,12 @@ public class Venda implements Serializable {
     public Venda() {
     }
 
-    public Venda(Date instante, Pessoa pessoa) {
+    public Venda(Calendar instante, Pessoa pessoa) {
         this.instante = instante;
         this.pessoa = pessoa;
     }
 
-    public Venda(Date instante, Pagamento pagamento, Pessoa pessoa) {
+    public Venda(Calendar instante, Pagamento pagamento, Pessoa pessoa) {
         this.instante = instante;
         this.pagamento = pagamento;
         this.pessoa = pessoa;
@@ -81,11 +82,11 @@ public class Venda implements Serializable {
         this.id = id;
     }
 
-    public Date getInstante() {
+    public Calendar getInstante() {
         return instante;
     }
 
-    public void setInstante(Date instante) {
+    public void setInstante(Calendar instante) {
         this.instante = instante;
     }
 

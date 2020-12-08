@@ -10,6 +10,7 @@ import com.mycompany.mercado.doumain.ItemVenda;
 import com.mycompany.mercado.doumain.Produto;
 import com.mycompany.mercado.doumain.Venda;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
@@ -39,6 +40,9 @@ public class DialogVendas extends javax.swing.JDialog {
     private List<ItemVenda>itemVendas = new ArrayList<>();
     
     //METODO
+    public void instanciarVenda(){
+        venda = new Venda(Calendar.getInstance(), null);
+    }
     public void fecharVenda(){
          
         List<String> listaCompra = new ArrayList<>();
@@ -49,7 +53,8 @@ public class DialogVendas extends javax.swing.JDialog {
         if(e.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER){
             addLista(codigoProduto.getText());
         }
-        
+       // instanciarVenda();
+       // System.out.println("venda"+venda);
     }
     public void addLista(String codigo){
         produto = ProdutoDAO.getInstance().getById(codigo);
