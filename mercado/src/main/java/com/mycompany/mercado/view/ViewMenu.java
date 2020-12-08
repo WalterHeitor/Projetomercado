@@ -46,10 +46,6 @@ public class ViewMenu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        panelMenu = new javax.swing.JPanel();
-        panelVendas = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        nomeVendedor = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu4 = new javax.swing.JMenu();
         jMenuItemClientes = new javax.swing.JMenuItem();
@@ -60,39 +56,6 @@ public class ViewMenu extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("SoftWalter");
-
-        panelMenu.setLayout(new java.awt.CardLayout());
-
-        panelVendas.setBackground(new java.awt.Color(175, 207, 245));
-
-        jLabel2.setFont(new java.awt.Font("Wide Latin", 0, 14)); // NOI18N
-        jLabel2.setText("Vendedor:");
-
-        nomeVendedor.setFont(new java.awt.Font("Wide Latin", 0, 14)); // NOI18N
-        nomeVendedor.setText("Selecione.");
-
-        javax.swing.GroupLayout panelVendasLayout = new javax.swing.GroupLayout(panelVendas);
-        panelVendas.setLayout(panelVendasLayout);
-        panelVendasLayout.setHorizontalGroup(
-            panelVendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelVendasLayout.createSequentialGroup()
-                .addContainerGap(493, Short.MAX_VALUE)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(nomeVendedor, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30))
-        );
-        panelVendasLayout.setVerticalGroup(
-            panelVendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelVendasLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(panelVendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(nomeVendedor))
-                .addContainerGap(530, Short.MAX_VALUE))
-        );
-
-        panelMenu.add(panelVendas, "cardVendas");
 
         jMenu4.setMnemonic('C');
         jMenu4.setText("Cadastros");
@@ -135,11 +98,11 @@ public class ViewMenu extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGap(0, 1360, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGap(0, 849, Short.MAX_VALUE)
         );
 
         pack();
@@ -217,7 +180,6 @@ public class ViewMenu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
@@ -225,8 +187,5 @@ public class ViewMenu extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItemClientes;
     private javax.swing.JMenuItem jMenuItemFornecedores;
     private javax.swing.JMenuItem jMenuItemProdutos;
-    private javax.swing.JLabel nomeVendedor;
-    private javax.swing.JPanel panelMenu;
-    private javax.swing.JPanel panelVendas;
     // End of variables declaration//GEN-END:variables
 }

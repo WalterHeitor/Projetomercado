@@ -57,6 +57,13 @@ public class Venda implements Serializable {
         this.instante = instante;
         this.pessoa = pessoa;
     }
+
+    public Venda(Date instante, Pagamento pagamento, Pessoa pessoa) {
+        this.instante = instante;
+        this.pagamento = pagamento;
+        this.pessoa = pessoa;
+    }
+    
     
     public double getValorTotal(){
         double soma = 0.0;
