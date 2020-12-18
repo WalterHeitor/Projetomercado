@@ -121,6 +121,10 @@ public class DialogVendas extends javax.swing.JDialog {
         tableVendas = new javax.swing.JTable();
         jLabel5 = new javax.swing.JLabel();
         codigoProduto = new javax.swing.JTextField();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        menuNovaVenda = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -192,7 +196,7 @@ public class DialogVendas extends javax.swing.JDialog {
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(1, 1, 1)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 465, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(80, Short.MAX_VALUE))
+                .addContainerGap(49, Short.MAX_VALUE))
         );
 
         jLabel5.setFont(new java.awt.Font("Wide Latin", 0, 14)); // NOI18N
@@ -270,6 +274,19 @@ public class DialogVendas extends javax.swing.JDialog {
                 .addComponent(fecharVenda)
                 .addGap(90, 90, 90))
         );
+
+        menuNovaVenda.setText("File");
+
+        jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItem1.setText("Nova Venda");
+        menuNovaVenda.add(jMenuItem1);
+
+        jMenuBar1.add(menuNovaVenda);
+
+        jMenu2.setText("Edit");
+        jMenuBar1.add(jMenu2);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -351,8 +368,12 @@ public class DialogVendas extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JMenu menuNovaVenda;
     private javax.swing.JPanel panelVendas;
     private javax.swing.JTable tableVendas;
     private javax.swing.JTextField valorUnitario;
